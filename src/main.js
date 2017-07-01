@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import 'normalize.css/normalize.css'
+
 import { Button } from 'element-ui'
 Vue.use(Button)
 
