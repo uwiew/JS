@@ -5,7 +5,7 @@
       <router-link to="/goods">商品</router-link>
       <router-link to="/about">关于</router-link>
       <div class="right">
-        <router-link to="/mine">我的账号</router-link>
+        <router-link to="/mine">我の</router-link>
       </div>
     </nav>
     <keep-alive>
@@ -22,7 +22,7 @@ export default {
 
 <style lang="stylus">
 $mobile-width = 767px
-$common-padding = 60px
+$common-padding = 100px
 $nav-height = 80px
 
 ul
@@ -35,6 +35,7 @@ a
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   color: #2c3e50
+  overflow: hidden
   nav
     height: $nav-height
     line-height: $nav-height
@@ -43,13 +44,18 @@ a
     padding: 0 $common-padding
     transition: 1s all
     font-size: 0
+    width: 100%
+    box-shadow: 0px 1px 3px rgba(0,0,0,.16)
     position: relative
     a
       font-weight: 500
       font-size: 16px
       color: #666
-      padding: 27px
+      padding: 29px
       position: relative
+      transition: .2s color ease-in
+      &:hover
+        color: #4688f1
       &.router-link-active
         &:after
           content: ""
@@ -69,10 +75,17 @@ a
   .viewport
     width: 100vw
     min-height: 100vh - $nav-height
-    padding: 0 $common-padding
+    // padding: 0 $common-padding
     overflow: hidden
 
   @media (max-width: $mobile-width)
     nav
       padding: 0 5px
+      height: 60px
+      line-height: 60px
+      a
+        padding: 20px
+        font-size: 13px
+      .right
+        right: 5px
 </style>

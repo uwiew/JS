@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      msg: 'Mine'
+      msg: '我的账号'
     }
   }
 }

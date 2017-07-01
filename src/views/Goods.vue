@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      msg: 'Goods'
+      msg: '产品列表'
     }
   }
 }
