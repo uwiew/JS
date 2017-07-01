@@ -3,7 +3,7 @@
     <div class="login-card">
       <h1>机设</h1>
       <p>踏踏实实做人，认认真真搞机。</p>
-      <transition name="fade" mode="out-in">
+      <transition name="login-fade" mode="out-in">
         <router-view></router-view>
       </transition>
     </div>
@@ -21,7 +21,7 @@ $default-color = #4688f1
 .login
   .login-card
     position: relative
-    margin: 5% auto
+    margin: 8% auto
     background: transparent
     width: 300px
     z-index: 999
@@ -76,10 +76,10 @@ $default-color = #4688f1
     overflow: hidden
     margin: 0 auto
 
-  .fade-enter-active, .fade-leave-active
+  .login-fade-enter-active, .login-fade-leave-active
     transition: all .14s ease
-    transform: translateX(0)
-  .fade-enter, .fade-leave-active
+    transform: translateY(0)
+  .login-fade-enter, .login-fade-leave-active
     opacity: 0
     transform: translateY(10px)
 </style>

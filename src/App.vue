@@ -5,12 +5,15 @@
       <router-link to="/goods">商品</router-link>
       <router-link to="/about">关于</router-link>
       <div class="right">
-        <router-link to="/mine">我の</router-link>
+        <!--<router-link to="/mine">我の</router-link>-->
+        <router-link to="/login">我の</router-link>
       </div>
     </nav>
-    <keep-alive>
-      <router-view class="viewport"></router-view>
-    </keep-alive>
+    <transition name="fade" mode="out-in">
+      <keep-alive>
+        <router-view class="viewport"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -88,4 +91,11 @@ a
         font-size: 13px
       .right
         right: 5px
+
+  .fade-enter-active, .fade-leave-active
+    transition: all .14s ease
+    transform: translateX(0)
+  .fade-enter, .fade-leave-active
+    opacity: 0
+    transform: translateX(10px)
 </style>
