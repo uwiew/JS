@@ -78,7 +78,7 @@ $default-color = #4688f1
 
   .login-fade-enter-active, .login-fade-leave-active
     transition: all .14s ease
-    transform: translateY(0)
+    // transform: translateY(0)
   .login-fade-enter, .login-fade-leave-active
     opacity: 0
     transform: translateY(10px)

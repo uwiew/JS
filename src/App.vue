@@ -78,7 +78,6 @@ a
   .viewport
     width: 100vw
     min-height: 100vh - $nav-height
-    // padding: 0 $common-padding
     overflow: hidden
 
   @media (max-width: $mobile-width)
