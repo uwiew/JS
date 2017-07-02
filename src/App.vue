@@ -78,6 +78,7 @@ a
     width: 100vw
     min-height: 100vh - $nav-height
     overflow: hidden
+    box-sizing border-box
 
   @media (max-width: $mobile-width)
     nav
