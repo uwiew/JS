@@ -10,9 +10,7 @@
       </div>
     </nav>
     <transition name="fade" mode="out-in">
-      <keep-alive>
-        <router-view class="viewport"></router-view>
-      </keep-alive>
+      <router-view class="viewport"></router-view>
     </transition>
   </div>
 </template>
