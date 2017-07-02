@@ -8,7 +8,7 @@
         <el-input v-model.trim="form.password" placeholder="请输入密码" type="password"></el-input>
       </el-form-item>
       <el-form-item label="重复密码">
-        <el-input v-model.trim="form.password" placeholder="再次输入密码" type="password"></el-input>
+        <el-input v-model.trim="form.repeat" placeholder="再次输入密码" type="password"></el-input>
       </el-form-item>
       <button class="button" :disabled="isLoading" v-loading.lock="isLoading">注 册</button>
     </el-form>
@@ -21,7 +21,8 @@ export default {
     return {
       form: {
         username: '',
-        password: ''
+        password: '',
+        repeat: ''
       },
       isLoading: false
     }
