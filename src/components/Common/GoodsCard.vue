@@ -17,3 +17,11 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+.goods-card
+  margin: 0
+  width: 100px
+  img
+    width: 100%
+</style>
