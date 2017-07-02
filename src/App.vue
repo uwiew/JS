@@ -80,7 +80,7 @@ a
     box-sizing border-box
     padding 30px $common-padding
     @media (max-width $mobile-width)
-      padding 30px 30px
+      padding 30px 10px
   @media (max-width: $mobile-width)
     nav
       padding: 0 5px
@@ -94,7 +94,7 @@ a
 
   .fade-enter-active, .fade-leave-active
     transition: all .14s ease
-    transform: translateX(0)
+    // transform: translateX(0)
   .fade-enter, .fade-leave-active
     opacity: 0
     transform: translateX(10px)

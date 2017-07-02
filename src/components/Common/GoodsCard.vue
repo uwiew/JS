@@ -1,5 +1,5 @@
 <template>
-  <figure class="goods-card">
+  <figure class="goods-card" @click="$router.push('/goods/' + id)">
     <img :src="require('../../public/mock_pic/' + pic + '.png')" :alt="name">
     <figcaption>
       <h3>{{ name }}</h3>
@@ -12,6 +12,7 @@
 export default {
   props: {
     name: String,
+    id: Number,
     price: Number,
     pic: String
   }
@@ -34,6 +35,8 @@ export default {
     transform translate3d(0, -2px, 0)
   h3
     margin 10px 0 5px
+  b
+    color #4688f1
   img
     width: 100%
 </style>
