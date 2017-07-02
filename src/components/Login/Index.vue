@@ -1,10 +1,10 @@
 <template>
   <section class="login-component">
-    <el-form label-width="40px" :model="form" class="form">
-      <el-form-item label="账号">
+    <el-form :model="form" class="form">
+      <el-form-item>
         <el-input v-model.trim="form.username" placeholder="请输入账号"></el-input>
       </el-form-item>
-      <el-form-item label="密码">
+      <el-form-item>
         <el-input v-model.trim="form.password" placeholder="请输入密码" type="password"></el-input>
       </el-form-item>
       <button class="button" :disabled="isLoading" v-loading.lock="isLoading">登 录</button>
