@@ -58,16 +58,15 @@ a
       transition: .2s color ease-in
       &:hover
         color: $default-color
-      &.router-link-active
-        &:after
-          content: ""
-          display: block
-          width: 100%
-          height: 3px
-          background: $default-color
-          position: absolute
-          left: 0
-          bottom: 0
+      &.router-link-active:after
+        content: ""
+        display: block
+        width: 100%
+        height: 3px
+        background: $default-color
+        position: absolute
+        left: 0
+        bottom: 0
     .right
       position: absolute
       right: $common-padding
@@ -78,7 +77,10 @@ a
     width: 100vw
     min-height: 100vh - $nav-height
     overflow: hidden
-
+    box-sizing border-box
+    padding 30px $common-padding
+    @media (max-width $mobile-width)
+      padding 30px 10px
   @media (max-width: $mobile-width)
     nav
       padding: 0 5px
@@ -92,7 +94,7 @@ a
 
   .fade-enter-active, .fade-leave-active
     transition: all .14s ease
-    transform: translateX(0)
+    // transform: translateX(0)
   .fade-enter, .fade-leave-active
     opacity: 0
     transform: translateX(10px)

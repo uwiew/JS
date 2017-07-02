@@ -37,6 +37,7 @@ export default {
 $mobile-width = 767px
 
 .index
+  padding 0 !important
   .carousel
     width: 100%
     margin-bottom: 20px

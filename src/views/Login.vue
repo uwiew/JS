@@ -22,12 +22,16 @@ $default-color = #4688f1
 
 .login
   .login-card
-    position: relative
-    margin: 6% auto
-    background: transparent
+    position relative
+    margin 6% auto
+    background transparent
     width: 300px
-    z-index: 999
-    // overflow: hidden
+    padding 30px 15px
+    border-radius 4px
+    box-sizing border-box
+    z-index 999
+    overflow hidden
+    box-shadow 0 1px 2px rgba(0, 0, 0, 0.2)
     h1
       margin: 0 0 5px
       text-align: center
