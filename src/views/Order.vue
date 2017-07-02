@@ -23,7 +23,7 @@
         <div class="order-item order-item-3">
           <div class="order-head"> 数量 </div>
           <div class="order-body">
-            <el-input-number></el-input-number>
+            <el-input-number :min="0" v-model="count" @change="handleCountChange"></el-input-number>
           </div>
         </div>
         <div class="order-item order-item-4">
@@ -41,7 +41,7 @@
       </div>
       <div class="submit">
         <div class="check-money">
-          <b>总计 ￥{{ goods.price }}</b>
+          <b>总计 ￥{{ price }}</b>
           <p><i class="el-icon-check"></i>&nbsp; 您的账户余额为 16030 元，金额充足可以支付</p>
         </div>
         <el-button type="primary" size="large">提交订单</el-button>
@@ -51,9 +51,22 @@
 </template>
 <script>
 export default {
+  data () {
+    return {
+      count: 0
+    }
+  },
   computed: {
     goods () {
       return this.$store.state.goodsList[this.$route.path.split('/')[2]]
+    },
+    price () {
+      return this.goods.price * this.count
+    }
+  },
+  methods: {
+    handleCountChange () {
+      console.log(this.count)
     }
   }
 }
@@ -67,9 +80,9 @@ $mobile-width = 767px
   .small
     font-size: 14px;
 
-  container()
-    margin 0 auto
-    width 80%
+  // container()
+  //   margin 0 auto
+  //   width 80%
 
   .card
     border 1px solid #eaeefb
