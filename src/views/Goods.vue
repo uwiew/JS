@@ -1,6 +1,6 @@
 <template>
   <section class="goods">
-    <h1>商品列表</h1>
+    <h2>商品列表</h2>
     <div class="goods-list">
       <goods-card v-for="(item, idx) in goodsList" :name="item.name" :price="item.price" :pic="item.pic" :key="idx"></goods-card>
     </div>
@@ -22,5 +22,26 @@ export default {
 </script>
 
 <style lang="stylus">
+$mobile-width = 767px
+$common-padding = 100px
 
+.goods
+  h2
+    padding-bottom 12px
+    border-bottom 3px dashed #eaeefb
+  .goods-list
+    padding-top 5px
+    overflow hidden
+    box-sizing border-box
+    display flex
+    flex-wrap wrap
+    justify-content space-between
+
+@media (max-width $mobile-width)
+  .goods
+    padding 30px 30px
+    .goods-list
+      width 100%
+    .goods-card
+      width: 48%
 </style>
