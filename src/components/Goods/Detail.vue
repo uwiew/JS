@@ -1,6 +1,6 @@
 <template>
-  <section class="goods">
-
+  <section class="goods-detail">
+    <h1>{{ msg }}</h1>
   </section>
 </template>
 
@@ -8,6 +8,7 @@
 export default {
   data () {
     return {
+      msg: '商品详情'
     }
   }
 }

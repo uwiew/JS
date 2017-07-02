@@ -2,13 +2,17 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Index from '@/views/Index'
+
 import Goods from '@/views/Goods'
-import About from '@/views/About'
-import Mine from '@/views/Mine'
+import GoodsDetail from '@/components/Goods/Detail'
+
 import Login from '@/views/Login'
 import LoginComponent from '@/components/Login/Index'
 import SignupComponent from '@/components/Login/Signup'
 import ForgetComponent from '@/components/Login/Forget'
+
+import About from '@/views/About'
+import Mine from '@/views/Mine'
 import NotFound from '@/views/NotFound'
 
 Vue.use(Router)
@@ -17,9 +21,10 @@ export default new Router({
   mode: 'history',
   routes: [
     { path: '/', component: Index },
-    { path: '/goods', component: Goods },
     { path: '/about', component: About },
     { path: '/mine', component: Mine },
+    { path: '/goods', component: Goods },
+    { path: '/goods/:id', component: GoodsDetail },
     {
       path: '/login',
       component: Login,
