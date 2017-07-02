@@ -15,6 +15,8 @@ import About from '@/views/About'
 import Mine from '@/views/Mine'
 import NotFound from '@/views/NotFound'
 
+import Order from '@/views/Order'
+
 Vue.use(Router)
 
 export default new Router({
@@ -34,6 +36,7 @@ export default new Router({
         { path: '/forget', component: ForgetComponent }
       ]
     },
+    { path: '/order/:goodsId', component: Order },
     { path: '*', component: NotFound }
   ]
 })
