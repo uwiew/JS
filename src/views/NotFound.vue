@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      msg: 'NotFound'
+      msg: '404 傻了吧'
     }
   }
 }

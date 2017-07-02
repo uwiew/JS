@@ -27,6 +27,7 @@ export default {
 $mobile-width = 767px
 $common-padding = 100px
 $nav-height = 80px
+$default-color = #4688f1
 
 ul
   list-style-type: none
@@ -58,14 +59,14 @@ a
       position: relative
       transition: .2s color ease-in
       &:hover
-        color: #4688f1
+        color: $default-color
       &.router-link-active
         &:after
           content: ""
           display: block
           width: 100%
           height: 3px
-          background: #4688f1
+          background: $default-color
           position: absolute
           left: 0
           bottom: 0
@@ -74,7 +75,7 @@ a
       right: $common-padding
       top: 0
       a
-        color: #4688f1
+        color: $default-color
   .viewport
     width: 100vw
     min-height: 100vh - $nav-height

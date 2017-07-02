@@ -12,6 +12,8 @@
 
 <script>
 export default {
+  mounted () {
+  }
 }
 </script>
 
@@ -21,7 +23,7 @@ $default-color = #4688f1
 .login
   .login-card
     position: relative
-    margin: 8% auto
+    margin: 6% auto
     background: transparent
     width: 300px
     z-index: 999
