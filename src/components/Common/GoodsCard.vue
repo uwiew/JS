@@ -4,6 +4,7 @@
     <figcaption>
       <h3>{{ name }}</h3>
       <b>{{ price }}</b>
+      <p>{{ color }}、{{ agent }}、{{ memory }}G</p>
     </figcaption>
   </figure>
 </template>
@@ -12,9 +13,12 @@
 export default {
   props: {
     name: String,
+    pic: String,
+    agent: String,
+    color: String,
     id: Number,
     price: Number,
-    pic: String
+    memory: Number
   }
 }
 </script>
@@ -25,7 +29,8 @@ export default {
   margin 0 0 20px
   transition all .2s linear
   background #fff
-  padding 20px 0
+  padding 20px 5px
+  box-sizing: border-box
   text-align center
   border 1px solid #eaeefb
   border-radius 4px
@@ -37,6 +42,16 @@ export default {
     margin 10px 0 5px
   b
     color #4688f1
+    display block
+    width: 100%
+    padding-bottom 5px
+    margin-bottom 20px
+    border-bottom 1px dashed #eee
+  p
+    margin 0
+    font-size 13px
+    color: #abb0bc
+    font-weight 500
   img
     width: 100%
 </style>

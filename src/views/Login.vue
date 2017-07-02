@@ -32,6 +32,7 @@ $default-color = #4688f1
     z-index 999
     overflow hidden
     box-shadow 0 1px 2px rgba(0, 0, 0, 0.2)
+    animation rotate-login-card .45s ease-in-out
     h1
       margin: 0 0 5px
       text-align: center
@@ -88,4 +89,12 @@ $default-color = #4688f1
   .login-fade-enter, .login-fade-leave-active
     opacity: 0
     transform: translateY(10px)
+
+  @keyframes rotate-login-card
+    0%
+      opacity: 0
+      transform rotate(15deg) translateY(100px)
+    100%
+      opacity 1
+      transform none
 </style>

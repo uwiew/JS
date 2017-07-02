@@ -2,7 +2,16 @@
   <section class="goods">
     <h2>商品列表</h2>
     <div class="goods-list">
-      <goods-card v-for="(item, idx) in goodsList" :name="item.name" :price="item.price" :pic="item.pic" :id="item.id" :key="idx"></goods-card>
+      <goods-card v-for="(item, idx) in goodsList"
+        :name="item.name"
+        :price="item.price"
+        :pic="item.pic"
+        :id="item.id"
+        :memory="item.memory"
+        :agent="item.agent"
+        :color="item.color"
+        :key="idx">
+      </goods-card>
     </div>
   </section>
 </template>
@@ -36,6 +45,8 @@ $common-padding = 100px
     display flex
     flex-wrap wrap
     justify-content space-between
+    max-width 1440px
+    margin 0 auto
 
   @media (max-width $mobile-width)
     .goods-list
