@@ -58,16 +58,15 @@ a
       transition: .2s color ease-in
       &:hover
         color: $default-color
-      &.router-link-active
-        &:after
-          content: ""
-          display: block
-          width: 100%
-          height: 3px
-          background: $default-color
-          position: absolute
-          left: 0
-          bottom: 0
+      &.router-link-active:after
+        content: ""
+        display: block
+        width: 100%
+        height: 3px
+        background: $default-color
+        position: absolute
+        left: 0
+        bottom: 0
     .right
       position: absolute
       right: $common-padding

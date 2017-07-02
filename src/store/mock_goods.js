@@ -1,9 +1,9 @@
 export default [
   { name: 'iPhone se', price: 1999, pic: 'pic_0', color: '银色', memory: 16, agent: ' 联通4G/移动4G' },
-  { name: 'iPhone 7plus', price: 4599, pic: 'pic_1', color: '玫瑰金色', memory: 32, agent: '联通4G/移动4G' },
+  { name: 'iPhone 7 plus', price: 4599, pic: 'pic_1', color: '玫瑰金色', memory: 32, agent: '联通4G/移动4G' },
   { name: 'iPhone 6s', price: 3299, pic: 'pic_2', color: '玫瑰金色', memory: 64, agent: '联通4G/移动4G' },
-  { name: 'iPhone 6s', price: 3099, pic: 'pic_3', color: '深空灰色', memory: 16, agent: '联通4G/移动4G/电信4G' },
-  { name: 'samsung s7edge', price: 2299, pic: 'pic_4', color: '铂光金', memory: 32, agent: '联通4G/移动4G/电信4G' },
+  { name: 'iPhone 6s plus', price: 3099, pic: 'pic_3', color: '深空灰色', memory: 16, agent: '联通4G/移动4G/电信4G' },
+  { name: 'samsung s7 edge', price: 2299, pic: 'pic_4', color: '铂光金', memory: 32, agent: '联通4G/移动4G/电信4G' },
   { name: 'iPhone s8', price: 2599, pic: 'pic_5', color: '铂光金', memory: 32, agent: '联通4G/移动4G/电信4G' },
   { name: 'iPhone s8', price: 4799, pic: 'pic_6', color: '烟晶灰', memory: 64, agent: '联通4G/移动4G/电信4G' },
   { name: 'iPhone 5c', price: 5699, pic: 'pic_7', color: '雾屿蓝', memory: 128, agent: '联通4G/移动4G/电信4G' },
@@ -17,6 +17,6 @@ export default [
   { name: 'iPhone 7', price: 4499, pic: 'pic_15', color: '黑色', memory: 128, agent: '联通4G/移动4G' },
   { name: 'iPhone 7', price: 5099, pic: 'pic_16', color: '银色', memory: 256, agent: '联通4G/移动4G/电信4G' },
   { name: 'iPhone 7', price: 4799, pic: 'pic_17', color: '金色', memory: 128, agent: '联通4G/移动4G/电信4G' },
-  { name: 'iPhone 7plus', price: 4999, pic: 'pic_18', color: '黑色', memory: 32, agent: '联通4G/移动4G/电信4G' },
-  { name: 'iPhone 7plus', price: 5149, pic: 'pic_19', color: '亮黑色', memory: 256, agent: '联通4G/移动4G/电信4G' }
+  { name: 'iPhone 7 plus', price: 4999, pic: 'pic_18', color: '黑色', memory: 32, agent: '联通4G/移动4G/电信4G' },
+  { name: 'iPhone 7 plus', price: 5149, pic: 'pic_19', color: '亮黑色', memory: 256, agent: '联通4G/移动4G/电信4G' }
 ]
