@@ -79,7 +79,9 @@ a
     min-height: 100vh - $nav-height
     overflow: hidden
     box-sizing border-box
-
+    padding 30px $common-padding
+    @media (max-width $mobile-width)
+      padding 30px 30px
   @media (max-width: $mobile-width)
     nav
       padding: 0 5px

@@ -26,7 +26,6 @@ $mobile-width = 767px
 $common-padding = 100px
 
 .goods
-  padding 30px $common-padding
   h2
     padding-bottom 12px
     border-bottom 3px dashed #eaeefb
@@ -38,9 +37,7 @@ $common-padding = 100px
     flex-wrap wrap
     justify-content space-between
 
-@media (max-width $mobile-width)
-  .goods
-    padding 30px 30px !important
+  @media (max-width $mobile-width)
     .goods-list
       width 100%
     .goods-card

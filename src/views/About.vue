@@ -1,6 +1,6 @@
 <template>
   <section class="about">
-    <h1>{{ msg }}</h1>
+    <h2>{{ msg }}</h2>
   </section>
 </template>
 
