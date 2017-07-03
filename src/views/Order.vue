@@ -23,19 +23,19 @@
         <div class="order-item order-item-3">
           <div class="order-head"> 数量 </div>
           <div class="order-body">
-            <el-input-number :min="0" v-model="count" @change="handleCountChange"></el-input-number>
+            <el-input-number size="small" :min="1" v-model="count" @change="handleCountChange"></el-input-number>
           </div>
         </div>
         <div class="order-item order-item-4">
           <div class="order-head">小计</div>
           <div class="order-body">
-            <p>1件</p>
+            <p>{{ count }}件</p>
           </div>
         </div>
         <div class="order-item order-item-5">
           <div class="order-head">收货地址</div>
           <div class="order-body">
-            <p>湖南省湘潭市雨湖区湘漂大学水壶单身公寓15栋</p>
+            <p contenteditable="true">湖南省湘潭市雨湖区湘漂大学水壶单身公寓15栋</p>
           </div>
         </div>
       </div>

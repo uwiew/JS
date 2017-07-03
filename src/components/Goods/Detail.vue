@@ -45,6 +45,7 @@ $mobile-width = 767px
     border-radius 4px
     padding 20px
     box-sizing border-box
+    background #fff
     .pic
       width 32%
       img

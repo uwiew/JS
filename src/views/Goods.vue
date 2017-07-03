@@ -48,6 +48,9 @@ $common-padding = 100px
     max-width 1440px
     margin 0 auto
 
+  @media (max-width $mobile-width + 200px)
+    .goods-card
+      width: 32%
   @media (max-width $mobile-width)
     .goods-list
       width 100%

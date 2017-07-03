@@ -5,8 +5,8 @@
       <router-link to="/goods">商品</router-link>
       <router-link to="/about">关于</router-link>
       <div class="right">
-        <!--<router-link to="/mine">我の</router-link>-->
-        <router-link to="/login">我の</router-link>
+        <router-link to="/mine">我の</router-link>
+        <router-link to="/login">登录</router-link>
       </div>
     </nav>
     <transition name="fade" mode="out-in">
@@ -27,10 +27,13 @@ $common-padding = 100px
 $nav-height = 80px
 $default-color = #4688f1
 
+body
+  background #f7f8fa
 ul
   list-style-type: none
 a
   text-decoration: none
+
 
 #app
   font-family: 'Avenir', Helvetica, Arial, sans-serif
@@ -38,10 +41,11 @@ a
   -moz-osx-font-smoothing: grayscale
   color: #2c3e50
   overflow: hidden
+  background #f7f8fa
   nav
     height: $nav-height
     line-height: $nav-height
-    background-color: rgba(252, 252, 252, 1)
+    background-color: #fff
     box-sizing: border-box
     padding: 0 $common-padding
     transition: 1s all
@@ -97,5 +101,5 @@ a
     // transform: translateX(0)
   .fade-enter, .fade-leave-active
     opacity: 0
-    transform: translateX(10px)
+    transform: translateX(20px)
 </style>
