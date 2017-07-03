@@ -1,6 +1,6 @@
 <template>
   <section class="login-component">
-    <el-form :model="form" :rules="rules" ref="form" class="form">
+    <el-form :model="form" :rules="rules" class="form">
       <el-form-item prop="username">
         <el-input v-model.trim="form.username" placeholder="账号"></el-input>
       </el-form-item>
