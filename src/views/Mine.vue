@@ -8,7 +8,8 @@
         <img :src="require('../public/' + mineInfo.headImgUrl)" alt="">
       </div>
       <div class="user-list">
-        <h3>{{ mineInfo.desc }}</h3>
+        <h3>累计剁手：￥{{ mineInfo.total }}</h3>
+        <h3>您已超过了：96%的人</h3>
       </div>
     </div>
 
@@ -91,12 +92,12 @@ $mobile-width = 767px
       width 100%
       header
         h2
-          left 160px
+          left 140px
       .head-img
         margin -60px 10px 5px
         width 120px
       .user-list
-        padding-left 160px
+        padding-left 140px
         font-size 12px
         // p{position: relative; line-height: 20px; max-height: 40px;overflow: hidden;}
         // p::after{content: "..."; position: absolute; bottom: 0; right: 0; padding-left: 40px;
