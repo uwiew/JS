@@ -14,7 +14,8 @@
           <li>颜色：<span>{{ goods.color }}</span></li>
           <li>版本：<span>{{ goods.agent }}</span></li>
         </ul>
-        <el-button type="primary" @click="$router.push('/order/' + goods.id)" class="buy-button">买买买！</el-button>
+        <el-button type="primary" @click="$router.push('/order/' + goods.id)" class="buy-button">买买买买买</el-button>
+        <el-button type="danger" @click="$router.push('/goods')" class="buy-button">圆润地离开</el-button>
       </div>
     </div>
   </section>
@@ -78,4 +79,8 @@ $mobile-width = 767px
       margin-bottom 20px
     .buy-button
       width 100%
+      box-sizing border-box
+      margin-bottom 10px
+      &:last-child
+        margin 0
 </style>

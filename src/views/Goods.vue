@@ -45,7 +45,7 @@ $common-padding = 100px
     display flex
     flex-wrap wrap
     justify-content space-between
-    max-width 1440px
+    max-width 1200px
     margin 0 auto
 
   @media (max-width $mobile-width + 200px)

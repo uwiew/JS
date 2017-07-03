@@ -45,7 +45,8 @@ a
   nav
     height: $nav-height
     line-height: $nav-height
-    background-color: #fff
+    background: #fff
+    z-index 100
     box-sizing: border-box
     padding: 0 $common-padding
     transition: 1s all
@@ -97,9 +98,9 @@ a
         right: 5px
 
   .fade-enter-active, .fade-leave-active
-    transition: all .14s ease
+    transition: all .18s ease
     // transform: translateX(0)
   .fade-enter, .fade-leave-active
     opacity: 0
-    transform: translateX(20px)
+    transform: translateX(10px)
 </style>
