@@ -24,7 +24,7 @@ $default-color = #4688f1
   .login-card
     position relative
     margin 6% auto
-    background transparent
+    background #fff
     width: 300px
     padding 30px 15px
     border-radius 4px

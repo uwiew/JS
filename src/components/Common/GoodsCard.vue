@@ -26,7 +26,7 @@ export default {
 <style lang="stylus">
 .goods-card
   width 22%
-  margin 0 0 20px
+  margin 0 0 30px
   transition all .2s linear
   background #fff
   padding 20px 5px

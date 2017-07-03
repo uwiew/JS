@@ -97,6 +97,14 @@ $mobile-width = 767px
         width 120px
       .user-list
         padding-left 160px
+        font-size 12px
+        // p{position: relative; line-height: 20px; max-height: 40px;overflow: hidden;}
+        // p::after{content: "..."; position: absolute; bottom: 0; right: 0; padding-left: 40px;
+        // background: -webkit-linear-gradient(left, transparent, #fff 55%);
+        // background: -o-linear-gradient(right, transparent, #fff 55%);
+        // background: -moz-linear-gradient(right, transparent, #fff 55%);
+        // background: linear-gradient(to right, transparent, #fff 55%);
+        // }
 
   @keyframes fade-mine-card
     0%

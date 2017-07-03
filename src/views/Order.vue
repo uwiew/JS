@@ -86,6 +86,7 @@ $mobile-width = 767px
 
   .card
     border 1px solid #eaeefb
+    background #fff
     box-shadow 1px 2px 5px rgba(0,0,0,.1)
     border-radius 4px
     box-sizing border-box
