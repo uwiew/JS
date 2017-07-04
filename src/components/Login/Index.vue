@@ -1,13 +1,13 @@
 <template>
   <section class="login-component">
-    <el-form :model="form" :rules="rules" class="form">
+    <el-form :model="form" :rules="rules" class="form" ref="form">
       <el-form-item prop="username">
         <el-input v-model.trim="form.username" placeholder="账号"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input v-model.trim="form.password" placeholder="密码" type="password"></el-input>
       </el-form-item>
-      <button class="button" :disabled="isLoading" v-loading.lock="isLoading">登 录</button>
+      <button class="button" :disabled="isLoading" v-loading.lock="isLoading" @click.stop.prevent="submitLogin">登 录</button>
     </el-form>
     <div class="other-link">
       <router-link to="/signup" class="button">注 册</router-link>
@@ -46,6 +46,17 @@ export default {
         username: [{ validator: validateUsername, trigger: 'blur' }],
         password: [{ validator: validatePassword, trigger: 'blur' }]
       }
+    }
+  },
+  methods: {
+    submitLogin () {
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.$store.dispatch('fetchLogin', this.form)
+        } else {
+          return false
+        }
+      })
     }
   }
 }
