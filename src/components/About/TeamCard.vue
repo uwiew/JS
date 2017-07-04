@@ -44,7 +44,7 @@ $mobile-width = 767px
       line-height 22px
   @media (max-width $mobile-width)
     h3
-      font-size 12px
+      font-size 10px
     p
       display none
 </style>

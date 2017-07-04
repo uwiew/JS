@@ -80,6 +80,9 @@ $mobile-width = 767px
     &:first-child
       background transparent url('../public/images/about_0.jpg') center center no-repeat
       background-size cover
+
+
+
     &:nth-child(3)
       background transparent
     h2
@@ -132,7 +135,5 @@ $mobile-width = 767px
     35% {transform: rotate(4deg)}
     40% {transform: rotate(-2deg)}
     45% {transform: rotate(1deg)}
-    50% {transform: rotate(0deg)}
-    70% {transform: rotate(0deg)}
     100% {transform: rotate(0deg)}
 </style>
