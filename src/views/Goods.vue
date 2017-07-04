@@ -2,9 +2,9 @@
   <section class="goods">
     <h2>商品列表</h2>
     <div class="goods-list">
-      <goods-card v-for="(item, idx) in goodsList" 
-      :name="item.name" :price="item.price" :pic="item.pic" :id="item.id" 
-      :selection="item.selection" :key="idx"> 
+      <goods-card v-for="(item, idx) in goodsList"
+      :name="item.name" :price="item.price" :pic="item.pic" :id="item.id"
+      :selection="item.selection" :key="idx">
     </goods-card>
     </div>
   </section>
