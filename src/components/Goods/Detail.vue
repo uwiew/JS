@@ -2,7 +2,7 @@
   <section class="goods-detail">
     <div class="info" v-if="goods">
       <div class="pic">
-        <img :src="require('../../public/mock_pic/' + goods.pic + '.png')" :alt="goods.name">
+        <img :src="goods.pic" :alt="goods.name">
       </div>
       <div class="desc">
         <div class="title">
@@ -22,11 +22,21 @@
 </template>
 
 <script>
+import http from 'axios'
+
 export default {
-  computed: {
-    goods () {
-      return this.$store.state.goodsList[this.$route.path.split('/')[2]]
+  data () {
+    return {
+      goods: {}
     }
+  },
+  computed: {
+    id () {
+      return this.$route.params.id
+    }
+  },
+  async mounted () {
+    this.goods = (await http.get(`/goods/info?id=${this.id}`)).data
   }
 }
 </script>
