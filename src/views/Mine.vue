@@ -5,7 +5,7 @@
         <h2>{{ mineInfo.name }}</h2>
       </header>
       <div class="head-img">
-        <img :src="require('../public/' + mineInfo.headImgUrl)" alt="">
+        <img :src="mineInfo.headImgUrl" alt="">
       </div>
       <div class="user-list">
         <h3>累计剁手：￥{{ mineInfo.total }}</h3>
@@ -13,6 +13,12 @@
       </div>
     </div>
 
+    <!--<user-card
+      v-if="mineInfo.isAdmin"
+      :telephoneNum="mineInfo.telephoneNum"
+      :money="mineInfo.money"
+      :address="mineInfo.address">
+    </user-card>-->
     <user-card
       v-if="mineInfo"
       :telephoneNum="mineInfo.telephoneNum"
@@ -30,7 +36,7 @@ import AdminCard from '../components/Mine/AdminCard'
 export default {
   computed: {
     mineInfo () {
-      return this.$store.state.mineInfo
+      return this.$store.state.mine.mine
     }
   },
   mounted () {

@@ -50,9 +50,18 @@ export default {
   },
   methods: {
     submitLogin () {
-      this.$refs.form.validate((valid) => {
+      this.$refs.form.validate(async (valid) => {
         if (valid) {
-          this.$store.dispatch('fetchLogin', this.form)
+          try {
+            await this.$store.dispatch('fetchLogin', this.form)
+            this.$message({
+              message: '登录成功，欢迎来到搞机者峡谷',
+              type: 'success'
+            })
+            this.$router.replace('/mine')
+          } catch (e) {
+            this.$message.error('登录失败，吔屎啦你')
+          }
         } else {
           return false
         }

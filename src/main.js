@@ -5,7 +5,7 @@ import store from './store'
 
 import 'normalize.css/normalize.css'
 
-import { Button, Carousel, CarouselItem, Form, FormItem, Input, Loading, InputNumber, Tabs, TabPane } from 'element-ui'
+import { Button, Carousel, CarouselItem, Form, FormItem, Input, Loading, InputNumber, Tabs, TabPane, Message } from 'element-ui'
 Vue.use(Button)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
@@ -16,6 +16,8 @@ Vue.use(Loading)
 Vue.use(InputNumber)
 Vue.use(Tabs)
 Vue.use(TabPane)
+
+Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
 

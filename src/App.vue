@@ -6,7 +6,6 @@
       <router-link to="/about">关于</router-link>
       <div class="right">
         <router-link to="/mine">我の</router-link>
-        <router-link to="/login">登录</router-link>
       </div>
     </nav>
     <transition name="fade" mode="out-in">
@@ -17,7 +16,10 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  mounted () {
+    this.$store.dispatch('initMine')
+  }
 }
 </script>
 
