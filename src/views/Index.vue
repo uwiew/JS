@@ -5,12 +5,12 @@
       </el-carousel-item>
     </el-carousel>
 
-    <div class="sales-info">
+    <!--<div class="sales-info">
       <h2>近期活动</h2>
       <div class="sales-list">
         <div class="sales" v-for="(item, idx) in salesList" :key="idx" :style="{ background: item.color }">{{ item.describe }}</div>
       </div>
-    </div>
+    </div>-->
   </section>
 </template>
 
@@ -21,13 +21,13 @@ export default {
       bannerPic: [
         require('../public/images/index_banner_0.jpg'),
         require('../public/images/index_banner_1.jpg')
-      ],
-      salesList: [
-        { color: '#d85a63', describe: '黄**带着他的小姨子跑了，我们拿着手机抵工资，原价998今天只要20块，统统只要20块' },
-        { color: '#fab646', describe: '满666送5.20' },
-        { color: '#41b783', describe: '最后三天，低价甩卖小组长' },
-        { color: '#4688f1', describe: '我编不下去了' }
       ]
+      // salesList: [
+      //   { color: '#d85a63', describe: '黄**带着他的小姨子跑了，我们拿着手机抵工资，原价998今天只要20块，统统只要20块' },
+      //   { color: '#fab646', describe: '满666送5.20' },
+      //   { color: '#41b783', describe: '最后三天，低价甩卖小组长' },
+      //   { color: '#4688f1', describe: '我编不下去了' }
+      // ]
     }
   }
 }
