@@ -3,9 +3,9 @@
     <img :src="pic" :alt="name">
     <figcaption>
       <h3>{{ name }}</h3>
-      <b>{{ price }}</b>
+      <b>￥ {{ price }}</b>
       <p>
-        <span v-for="(item,index) in selection" :key="index"></span>
+        {{color}} 、{{agent}} 、{{memory}}G 
       </p>
     </figcaption>
   </figure>
@@ -16,9 +16,11 @@ export default {
   props: {
     name: String,
     pic: String,
-    selection: Object,
+    color: String,
+    agent: String,
+    memory: Number,
     price: Number,
-    id: Number
+    id: String
   }
 }
 </script>

@@ -24,7 +24,7 @@ export default {
       commit('setLoading', true)
       let list = (await http.get(url)).data
       commit('setLoading', false)
-      list.length < 1 ? commit('setEnd') : void (0)
+      list.length < 12 ? commit('setEnd') : void (0)
       commit('addGoods', list)
     }
   }
