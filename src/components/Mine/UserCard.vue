@@ -9,7 +9,7 @@
         <p>暂无</p>
       </el-tab-pane>
       <el-tab-pane label="地址管理" name="address">
-        <p>地址：{{ telephoneNum }}</p>
+        <p>地址：{{ address }}</p>
       </el-tab-pane>
     </el-tabs>
   </section>
@@ -24,7 +24,8 @@ export default {
   },
   props: {
     telephoneNum: Number,
-    money: Number
+    money: Number,
+    address: String
   },
   methods: {
     handleClick (tab, event) {

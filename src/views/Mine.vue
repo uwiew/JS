@@ -9,20 +9,14 @@
         <img :src="mineInfo.headImgUrl" alt="">
       </div>
       <div class="user-list">
-        <h3>累计剁手：￥{{ mineInfo.total }}</h3>
-        <h3>您已超过了：96%的人</h3>
+        <h3>累计剁手<span class="mark"> ￥{{ mineInfo.buyNum }}</span></h3>
+        <h3>您已超过了<span class="mark"> 96% </span>的机友</h3>
       </div>
     </div>
 
-    <!--<user-card
-      v-if="mineInfo.isAdmin"
-      :telephoneNum="mineInfo.telephoneNum"
-      :money="mineInfo.money"
-      :address="mineInfo.address">
-    </user-card>-->
     <user-card
-      v-if="mineInfo"
-      :telephoneNum="mineInfo.telephoneNum"
+      v-if="mineInfo && !mineInfo.isAdmin"
+      :telephoneNum="+mineInfo.telephoneNum"
       :money="mineInfo.money"
       :address="mineInfo.address">
     </user-card>
@@ -99,6 +93,9 @@ $mobile-width = 767px
       position absolute
       top 200px
       color #5e6d82
+      font-weight 300
+      .mark
+        color #4688f1
     @media (max-width $mobile-width)
       width 100%
       header
