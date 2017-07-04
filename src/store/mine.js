@@ -17,15 +17,16 @@ export default {
   },
   actions: {
     initMine ({ commit, state }) {
-      let data = sessionStorage.getItem('mine') === null
-        ? null
-        : JSON.parse(sessionStorage.getItem('mine'))
+      let data = sessionStorage.getItem('mine') ? JSON.parse(sessionStorage.mine) : null
       commit('setMine', data)
     },
     async fetchLogin ({ commit, state }, { username, password }) {
       let { data } = await mine.post('/user/login', { name: username, password })
       sessionStorage.setItem('mine', JSON.stringify(data))
       commit('setMine', data)
+    },
+    async fetchSignup ({ commit, state }, { username, password }) {
+      await mine.post('/user/register', { name: username, password })
     }
   }
 }
