@@ -19,7 +19,7 @@ import Order from '@/views/Order'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     { path: '/', component: Index },
@@ -47,3 +47,15 @@ export default new Router({
     }
   }
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/mine') {
+    sessionStorage.getItem('mine') === null
+      ? next('/login')
+      : next()
+  } else {
+    next()
+  }
+})
+
+export default router

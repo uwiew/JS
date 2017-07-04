@@ -14,7 +14,7 @@
     </div>
 
     <user-card
-      v-if="mineInfo.flag === 0"
+      v-if="mineInfo"
       :telephoneNum="mineInfo.telephoneNum"
       :money="mineInfo.money"
       :address="mineInfo.address">

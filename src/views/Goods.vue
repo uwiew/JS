@@ -8,7 +8,6 @@
       <div id="load1"></div>
       <div id="load2"></div>
       <div id="load3"></div>
->>>>>>> 1030c3578b79f6ba3606d21a90745e172e5afd41
     </div>
   </section>
 </template>
