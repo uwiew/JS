@@ -2,30 +2,39 @@
   <section class="goods">
     <h2>商品列表</h2>
     <div class="goods-list">
-      <goods-card v-for="(item, idx) in goodsList"
-        :name="item.name"
-        :price="item.price"
-        :pic="item.pic"
-        :id="item.id"
-        :memory="item.memory"
-        :agent="item.agent"
-        :color="item.color"
-        :key="idx">
-      </goods-card>
+      <goods-card v-for="(item, idx) in goodsList" 
+      :name="item.name" :price="item.price" :pic="item.pic" :id="item.id" 
+      :selection="item.selection" :key="idx"> 
+    </goods-card>
     </div>
   </section>
 </template>
 
 <script>
 import GoodsCard from '@/components/Common/GoodsCard'
+import { mapState } from 'vuex'
+
 export default {
   computed: {
-    goodsList () {
-      return this.$store.state.goodsList
-    }
+    ...mapState({
+      goodsList: state => state.goodsList.goodsList,
+      isEnd: state => state.goodsList.isEnd,
+      isLoading: state => state.goodsList.isLoading
+    })
   },
   components: {
     GoodsCard
+  },
+  methods: {
+    async moreGoods () {
+      if (this.isEnd || this.isLoading) {
+        return
+      }
+      await this.$store.dispatch('addGoods')
+    }
+  },
+  async mounted () {
+    await this.moreGoods()
   }
 }
 </script>

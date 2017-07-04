@@ -1,10 +1,12 @@
 <template>
   <figure class="goods-card" @click="$router.push('/goods/' + id)">
-    <img :src="require('../../public/mock_pic/' + pic + '.png')" :alt="name">
+    <img :src="pic" :alt="name">
     <figcaption>
       <h3>{{ name }}</h3>
       <b>{{ price }}</b>
-      <p>{{ color }}、{{ agent }}、{{ memory }}G</p>
+      <p>
+        <span v-for="(item,index) in selection" :key="index"></span>
+      </p>
     </figcaption>
   </figure>
 </template>
@@ -14,11 +16,9 @@ export default {
   props: {
     name: String,
     pic: String,
-    agent: String,
-    color: String,
-    id: Number,
+    selection: Object,
     price: Number,
-    memory: Number
+    id: Number
   }
 }
 </script>
