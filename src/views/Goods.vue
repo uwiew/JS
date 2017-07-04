@@ -2,16 +2,19 @@
   <section class="goods">
     <h2>商品列表</h2>
     <div class="goods-list">
-      <goods-card v-for="(item, idx) in goodsList" 
-      :name="item.name" :price="item.price" :pic="item.pic" :id="item.id" 
-      :selection="item.selection" :key="idx"> 
-    </goods-card>
+      <goods-card v-for="(item, idx) in goodsList" :id="item._id" :name="item.name" :price="item.price" :pic="item.pic" :color="item.color" :agent="item.agent" :memory="item.memory" :key="idx"> </goods-card>
+    </div>
+    <div class="loading ball-pulse-sync" v-show="isLoading">
+      <div id="load1"></div>
+      <div id="load2"></div>
+      <div id="load3"></div>
     </div>
   </section>
 </template>
 
 <script>
 import GoodsCard from '@/components/Common/GoodsCard'
+import 'loaders.css/loaders.min.css'
 import { mapState } from 'vuex'
 
 export default {
@@ -35,6 +38,13 @@ export default {
   },
   async mounted () {
     await this.moreGoods()
+    window.addEventListener('scroll', (e) => {
+      let offet = document.body.scrollTop + document.documentElement.clientHeight
+      let height = document.documentElement.offsetHeight
+      if ((height - offet) <= 30) {
+        this.moreGoods()
+      }
+    })
   }
 }
 </script>
@@ -56,7 +66,6 @@ $common-padding = 100px
     justify-content space-between
     max-width 1200px
     margin 0 auto
-
   @media (max-width $mobile-width + 200px)
     .goods-list
       width 100%
@@ -67,4 +76,14 @@ $common-padding = 100px
       width 100%
     .goods-card
       width: 48%
+
+#load1
+  background-color #fc615d
+#load2
+  background-color #fdbc40
+#load3
+ background-color #34c749
+.loading
+  margin 0 auto
+  width 66px
 </style>
