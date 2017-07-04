@@ -42,7 +42,7 @@ import TeamCard from '../components/About/TeamCard'
 export default {
   computed: {
     teamList () {
-      return this.$store.state.teamList
+      return this.$store.state.teamList.teamList
     }
   },
   components: {
