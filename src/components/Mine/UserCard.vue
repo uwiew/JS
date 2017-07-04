@@ -1,6 +1,5 @@
 <template>
   <section class="user-card card">
-    <!--<h2>USER</h2>-->
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="资本资料" name="info">
         <p>手机号码：{{ telephoneNum }}</p>

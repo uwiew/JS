@@ -3,6 +3,7 @@
     <div class="mine-card card" v-if="mineInfo">
       <header>
         <h2>{{ mineInfo.name }}</h2>
+        <el-button class="submitInfo">修改资料</el-button>
       </header>
       <div class="head-img">
         <img :src="mineInfo.headImgUrl" alt="">
@@ -70,14 +71,18 @@ $mobile-width = 767px
       height 200px
       background #4688f1
       position relative
-      h2
-        color #fff
+      h2, .submitInfo
         position absolute
-        bottom 0
+      h2
+        bottom 18px
+        color #fff
         left 180px
         font-size 50px
         letter-spacing .1rem
-        text-shadow: -3px 3px 0 rgba(0,0,0,.1);
+        text-shadow: -3px 3px 0 rgba(0,0,0,.1)
+      .submitInfo
+        right 10px
+        bottom -18px
     .head-img
       margin -70px 20px 15px
       width 140px
@@ -89,7 +94,7 @@ $mobile-width = 767px
       img
         width 100%
     .user-list
-      padding 10px 0 20px 180px
+      padding 25px 0 20px 180px
       box-sizing border-box
       position absolute
       top 200px
@@ -99,19 +104,13 @@ $mobile-width = 767px
       header
         h2
           left 140px
+          bottom 8px
       .head-img
         margin -60px 10px 5px
         width 120px
       .user-list
         padding-left 140px
         font-size 12px
-        // p{position: relative; line-height: 20px; max-height: 40px;overflow: hidden;}
-        // p::after{content: "..."; position: absolute; bottom: 0; right: 0; padding-left: 40px;
-        // background: -webkit-linear-gradient(left, transparent, #fff 55%);
-        // background: -o-linear-gradient(right, transparent, #fff 55%);
-        // background: -moz-linear-gradient(right, transparent, #fff 55%);
-        // background: linear-gradient(to right, transparent, #fff 55%);
-        // }
 
   @keyframes fade-mine-card
     0%
