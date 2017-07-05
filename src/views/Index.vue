@@ -8,11 +8,12 @@
     <div class="sales-info">
       <h2>大数统计</h2>
       <div class="sales-list">
-        <!--<canvas class="sales" id="myChart" width="100" height="100"></canvas>-->
         <div class="sales">
-          <canvas id="chartBuyNum"></canvas>
+          <h3>剁手排行</h3>
+          <canvas id="chartBuyNum" width="100" height="100"></canvas>
         </div>
         <div class="sales">
+          <h3>销量份额</h3>
           <canvas id="chartSalesNum"></canvas>
         </div>
       </div>
@@ -33,7 +34,9 @@ export default {
       bannerPic: [
         require('../public/images/index_banner_0.jpg'),
         require('../public/images/index_banner_1.jpg')
-      ]
+      ],
+      chartBuyNum: null,
+      chartSalesNum: null
     }
   },
   mounted () {
@@ -42,18 +45,17 @@ export default {
   methods: {
     async initCanvas () {
       let chartBuyNumId = document.getElementById('chartBuyNum')
-      const chart = new Chart(chartBuyNumId, chartBuyNumOption)
-      console.log(chart)
+      this.chartBuyNum = new Chart(chartBuyNumId, chartBuyNumOption)
 
       // 销量饼图
       let goodsList = (await http.get('/goods/list')).data
       goodsList = goodsList.sort((a, b) => b.salesNum - a.salesNum).slice(0, 5)
+
       chartSalesNumOption.data.labels = goodsList.map(el => el.name + ' ' + el.memory + 'G')
       chartSalesNumOption.data.datasets[0].data = goodsList.map(el => el.salesNum)
-      console.log(chartSalesNumOption)
-      // let chartBuyNumId = document.getElementById('chartSalesNum')
-      // const chart = new Chart(chartBuyNumId, chartSalesNumOption)
-      // console.log(chart)
+
+      let chartSalesNumId = document.getElementById('chartSalesNum')
+      this.chartSalesNum = new Chart(chartSalesNumId, chartSalesNumOption)
     }
   }
 }
@@ -79,17 +81,17 @@ $mobile-width = 767px
     // width 50vw
     display: flex
     flex-wrap: wrap
-    justify-content: space-between
+    justify-content: space-around
     .sales
-      width 40vw
+      width 30vw
       // padding: 20px
       // box-sizing: border-box
 
   @media (max-width: $mobile-width)
     .sales-list
       .sales
-        width 100vw
-        margin-bottom: 12px
+        width 80vw
+        margin-bottom: 50px
         &:last-child
           margin-bottom: 0
 </style>
