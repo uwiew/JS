@@ -5,16 +5,28 @@
       </el-carousel-item>
     </el-carousel>
 
-    <!--<div class="sales-info">
-      <h2>近期活动</h2>
+    <div class="sales-info">
+      <h2>大数统计</h2>
       <div class="sales-list">
-        <div class="sales" v-for="(item, idx) in salesList" :key="idx" :style="{ background: item.color }">{{ item.describe }}</div>
+        <!--<canvas class="sales" id="myChart" width="100" height="100"></canvas>-->
+        <div class="sales">
+          <canvas id="chartBuyNum"></canvas>
+        </div>
+        <div class="sales">
+          <canvas id="chartSalesNum"></canvas>
+        </div>
       </div>
-    </div>-->
+    </div>
+
   </section>
 </template>
 
 <script>
+import http from 'axios'
+import Chart from 'chart.js'
+import chartBuyNumOption from '../components/Index/chartBuyNum.js'
+import chartSalesNumOption from '../components/Index/chartSalesNum.js'
+
 export default {
   data () {
     return {
@@ -22,12 +34,26 @@ export default {
         require('../public/images/index_banner_0.jpg'),
         require('../public/images/index_banner_1.jpg')
       ]
-      // salesList: [
-      //   { color: '#d85a63', describe: '黄**带着他的小姨子跑了，我们拿着手机抵工资，原价998今天只要20块，统统只要20块' },
-      //   { color: '#fab646', describe: '满666送5.20' },
-      //   { color: '#41b783', describe: '最后三天，低价甩卖小组长' },
-      //   { color: '#4688f1', describe: '我编不下去了' }
-      // ]
+    }
+  },
+  mounted () {
+    this.initCanvas()
+  },
+  methods: {
+    async initCanvas () {
+      let chartBuyNumId = document.getElementById('chartBuyNum')
+      const chart = new Chart(chartBuyNumId, chartBuyNumOption)
+      console.log(chart)
+
+      // 销量饼图
+      let goodsList = (await http.get('/goods/list')).data
+      goodsList = goodsList.sort((a, b) => b.salesNum - a.salesNum).slice(0, 5)
+      chartSalesNumOption.data.labels = goodsList.map(el => el.name + ' ' + el.memory + 'G')
+      chartSalesNumOption.data.datasets[0].data = goodsList.map(el => el.salesNum)
+      console.log(chartSalesNumOption)
+      // let chartBuyNumId = document.getElementById('chartSalesNum')
+      // const chart = new Chart(chartBuyNumId, chartSalesNumOption)
+      // console.log(chart)
     }
   }
 }
@@ -50,20 +76,19 @@ $mobile-width = 767px
       border-bottom: 3px dashed #eee
       padding-bottom: 10px
   .sales-list
+    // width 50vw
     display: flex
-    justify-content: space-around
+    flex-wrap: wrap
+    justify-content: space-between
     .sales
-      width: 20%
-      border-radius: 4px
-      color: #fff
-      padding: 20px
-      box-sizing: border-box
+      width 40vw
+      // padding: 20px
+      // box-sizing: border-box
 
   @media (max-width: $mobile-width)
     .sales-list
-      flex-wrap: wrap
       .sales
-        width: 100%
+        width 100vw
         margin-bottom: 12px
         &:last-child
           margin-bottom: 0
