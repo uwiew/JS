@@ -6,9 +6,10 @@ let mine = http.create({
 
 export default {
   state: {
-    mine: {},
+    mine: null,
     isEnd: false,
-    isLoading: false
+    isLoading: false,
+    isFinishUpdate: true
   },
   mutations: {
     setMine (state, payload) {
@@ -16,19 +17,22 @@ export default {
     }
   },
   actions: {
-    initMine ({ commit, state }) {
-      let data = window.sessionStorage.getItem('mine') === null
-        ? null
-        : JSON.parse(window.sessionStorage.getItem('mine'))
-      commit('setMine', data)
+    async initMine ({ dispatch }) {
+      dispatch('updateUserInfo')
     },
     async fetchLogin ({ commit, state }, { username, password }) {
       let { data } = await mine.post('/user/login', { name: username, password })
-      window.sessionStorage.setItem('mine', JSON.stringify(data))
       commit('setMine', data)
     },
     async updateUserInfo ({ commit, state }) {
-      let userInfo = (await http.get(`/userPrivate/info`)).data
+      let userInfo
+      state.isFinishUpdate = false
+      try {
+        userInfo = (await http.get(`/userPrivate/info`)).data
+      } catch (e) {
+        state.isFinishUpdate = true
+      }
+      state.isFinishUpdate = false
       commit('setMine', userInfo)
     }
   }

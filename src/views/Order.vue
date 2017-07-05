@@ -73,7 +73,7 @@ export default {
       return this.goods.price * this.count
     },
     userInfo () {
-      return this.$store.state.mine.mine
+      return this.$store.state.mine.mine || {}
     },
     moneyIsEnough () {
       return this.userInfo.money >= this.price

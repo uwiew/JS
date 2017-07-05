@@ -48,14 +48,4 @@ const router = new Router({
   }
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.path === '/mine') {
-    window.sessionStorage.getItem('mine') === null
-      ? next('/login')
-      : next()
-  } else {
-    next()
-  }
-})
-
 export default router

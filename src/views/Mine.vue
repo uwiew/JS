@@ -6,20 +6,16 @@
         <el-button class="submitInfo">修改资料</el-button>
       </header>
       <div class="head-img">
-        <img :src="mineInfo.headImgUrl" alt="">
-      </div>
+        <img :src="mineInfo.headImgUrl" alt=""> </div>
       <div class="user-list">
-        <h3>累计剁手<span class="mark"> ￥{{ mineInfo.buyNum }}</span></h3>
-        <h3>您已超过了<span class="mark"> 96% </span>的机友</h3>
+        <h3>累计剁手
+          <span class="mark"> ￥{{ mineInfo.buyNum }}</span>
+        </h3>
+        <h3>您已超过了
+          <span class="mark"> 96% </span>的机友</h3>
       </div>
     </div>
-
-    <user-card
-      v-if="mineInfo && !mineInfo.isAdmin"
-      :telephoneNum="+mineInfo.telephoneNum"
-      :money="mineInfo.money"
-      :address="mineInfo.address">
-    </user-card>
+    <user-card v-if="mineInfo && !mineInfo.isAdmin" :telephoneNum="+mineInfo.telephoneNum" :money="mineInfo.money" :address="mineInfo.address"> </user-card>
     <admin-card v-else></admin-card>
   </section>
 </template>
@@ -31,10 +27,16 @@ import AdminCard from '../components/Mine/AdminCard'
 export default {
   computed: {
     mineInfo () {
-      return this.$store.state.mine.mine
+      return this.$store.state.mine.mine || {}
     }
   },
   mounted () {
+    let interval = window.setInterval(() => {
+      if (this.$store.state.mine.isFinishUpdate) {
+        window.clearInterval(interval)
+        this.$store.state.mine.mine || this.$router.replace('/login')
+      }
+    }, 500)
   },
   components: {
     UserCard,
