@@ -14,7 +14,7 @@
           <li>颜色：<span>{{ goods.color }}</span></li>
           <li>版本：<span>{{ goods.agent }}</span></li>
         </ul>
-        <el-button type="primary" @click="$router.push('/order/' + goods.id)" class="buy-button">买买买买买</el-button>
+        <el-button type="primary" @click="$router.push('/order/' + goods._id)" class="buy-button">买买买买买</el-button>
         <el-button type="danger" @click="$router.push('/goods')" class="buy-button">圆润地离开</el-button>
       </div>
     </div>

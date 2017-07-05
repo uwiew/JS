@@ -19,9 +19,9 @@ export default {
   },
   actions: {
     async addGoods ({ commit, state }) {
+      commit('setLoading', true)
       let goodsList = state.goodsList
       let url = `/goods/list${goodsList.length ? `?startId=${goodsList.slice(-1)[0]._id}` : ''} `
-      commit('setLoading', true)
       let list = (await http.get(url)).data
       commit('setLoading', false)
       list.length < 12 ? commit('setEnd') : void (0)

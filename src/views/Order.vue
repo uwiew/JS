@@ -6,7 +6,7 @@
         <div class="order-item order-item-1">
           <div class="order-head">产品名称</div>
           <div class="order-body">
-            <img :src="require('../public/mock_pic/' + goods.pic + '.png')" :alt="goods.name">
+            <img :src="goods.pic" :alt="goods.name">
             <div>
               <p>{{ goods.name }}、{{ goods.color }}、{{ goods.memory }}G、{{ goods.agent }}</p>
             </div>
@@ -23,7 +23,7 @@
         <div class="order-item order-item-3">
           <div class="order-head"> 数量 </div>
           <div class="order-body">
-            <el-input-number size="small" :min="1" v-model="count" @change="handleCountChange"></el-input-number>
+            <el-input-number size="small" :min="1" v-model="count"></el-input-number>
           </div>
         </div>
         <div class="order-item order-item-4">
@@ -35,39 +35,64 @@
         <div class="order-item order-item-5">
           <div class="order-head">收货地址</div>
           <div class="order-body">
-            <p contenteditable="true">湖南省湘潭市雨湖区湘漂大学水壶单身公寓15栋</p>
+            <p contenteditable="true">
+              <i class="el-icon-edit"></i>
+              {{address}}</p>
           </div>
         </div>
       </div>
       <div class="submit">
         <div class="check-money">
           <b>总计 ￥{{ price }}</b>
-          <p><i class="el-icon-check"></i>&nbsp; 您的账户余额为 16030 元，金额充足可以支付</p>
+          <p v-show="moneyIsEnough">
+            <i class="el-icon-check"></i>&nbsp; 您的账户余额为 {{userInfo.money}} 元，金额充足可以支付</p>
+          <p v-show="!moneyIsEnough">
+            <i class="el-icon-close"></i>&nbsp; 您的账户余额为 {{userInfo.money}} 元，金额不足以支付</p>
         </div>
-        <el-button type="primary" size="large">提交订单</el-button>
+        <el-button @click.native="submitOrder" type="primary" :disabled="!moneyIsEnough" size="large">提交订单</el-button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import http from 'axios'
+
 export default {
   data () {
     return {
-      count: 0
+      count: 1,
+      address: '',
+      goods: {}
     }
   },
   computed: {
-    goods () {
-      return this.$store.state.goodsList[this.$route.path.split('/')[2]]
+    id () {
+      return this.$route.params.goodsId
     },
     price () {
       return this.goods.price * this.count
+    },
+    userInfo () {
+      return this.$store.state.mine.mine
+    },
+    moneyIsEnough () {
+      return this.userInfo.money >= this.price
     }
   },
   methods: {
-    handleCountChange () {
-      console.log(this.count)
+    async submitOrder () {
+      await http.post('/order/create', {
+        goods: this.id,
+        num: this.count,
+        address: this.address
+      })
+      window.alert('success')
     }
+  },
+  async mounted () {
+    this.goods = (await http.get(`/goods/info?id=${this.id}`)).data
+    this.$store.dispatch('updateUserInfo')
+    this.address = this.userInfo.address
   }
 }
 </script>
@@ -137,7 +162,9 @@ $mobile-width = 767px
         text-align center
       .el-button
         width 100%!important
-
+    .check-money
+      text-align center
+      
   .order-item-1
     width 30%
     .order-body
@@ -177,8 +204,10 @@ $mobile-width = 767px
   .check-money
     p
       margin 10px 0 0
-    i
+    i.el-icon-check
       color #13ce66
+    i.el-icon-close
+      color #fc615d  
 
   .submit
     // container()

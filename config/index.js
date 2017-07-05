@@ -29,7 +29,9 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/goods/**': 'http://127.0.0.1:3000/',
-      '/user/**': 'http://127.0.0.1:3000/'
+      '/user/**': 'http://127.0.0.1:3000/',
+      '/userPrivate/**': 'http://127.0.0.1:3000/',
+      '/order/**': 'http://127.0.0.1:3000/'
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

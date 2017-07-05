@@ -50,7 +50,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.path === '/mine') {
-    sessionStorage.getItem('mine') === null
+    window.sessionStorage.getItem('mine') === null
       ? next('/login')
       : next()
   } else {
