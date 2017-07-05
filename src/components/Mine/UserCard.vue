@@ -1,6 +1,5 @@
 <template>
   <section class="user-card card">
-    <!--<h2>USER</h2>-->
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="资本资料" name="info">
         <p>手机号码：{{ telephoneNum }}</p>
@@ -10,7 +9,7 @@
         <p>暂无</p>
       </el-tab-pane>
       <el-tab-pane label="地址管理" name="address">
-        <p>地址：{{ telephoneNum }}</p>
+        <p>地址：{{ address }}</p>
       </el-tab-pane>
     </el-tabs>
   </section>
@@ -25,7 +24,8 @@ export default {
   },
   props: {
     telephoneNum: Number,
-    money: Number
+    money: Number,
+    address: String
   },
   methods: {
     handleClick (tab, event) {

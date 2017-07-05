@@ -10,7 +10,7 @@
       <el-form-item prop="repeat">
         <el-input v-model.trim="form.repeat" placeholder="重复密码" type="password"></el-input>
       </el-form-item>
-      <button class="button" :disabled="isLoading" v-loading.lock="isLoading">注 册</button>
+      <button class="button" :disabled="isLoading" v-loading.lock="isLoading" @click.stop.prevent="submitSignup">注 册</button>
     </el-form>
   </section>
 </template>
@@ -62,6 +62,22 @@ export default {
     }
   },
   methods: {
+    submitSignup () {
+      this.$refs.form.validate(async (valid) => {
+        if (valid) {
+          try {
+            console.log(this.form)
+            await this.$store.dispatch('fetchSignup', this.form)
+            this.$message('注册成功，今后你我就是好机友了')
+            this.$router.replace('/login')
+          } catch (e) {
+            this.$message.error(`${e.response.data[1]}，吔屎啦你`)
+          }
+        } else {
+          return false
+        }
+      })
+    }
   }
 }
 </script>
