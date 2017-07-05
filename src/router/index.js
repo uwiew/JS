@@ -20,7 +20,6 @@ import Order from '@/views/Order'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',
   routes: [
     { path: '/', component: Index },
     { path: '/about', component: About },
