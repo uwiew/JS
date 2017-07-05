@@ -23,6 +23,7 @@
 <script>
 import UserCard from '../components/Mine/UserCard'
 import AdminCard from '../components/Mine/AdminCard'
+import common from '../public/js/common'
 
 export default {
   computed: {
@@ -31,12 +32,7 @@ export default {
     }
   },
   mounted () {
-    let interval = window.setInterval(() => {
-      if (this.$store.state.mine.isFinishUpdate) {
-        window.clearInterval(interval)
-        this.$store.state.mine.mine || this.$router.replace('/login')
-      }
-    }, 500)
+    common.checkLogin(this.$store.state.mine, this.$router)
   },
   components: {
     UserCard,

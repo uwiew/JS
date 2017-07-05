@@ -56,6 +56,7 @@
 </template>
 <script>
 import http from 'axios'
+import common from '../public/js/common'
 
 export default {
   data () {
@@ -92,7 +93,9 @@ export default {
   async mounted () {
     this.goods = (await http.get(`/goods/info?id=${this.id}`)).data
     this.$store.dispatch('updateUserInfo')
-    this.address = this.userInfo.address
+    common.checkLogin(this.$store.state.mine, this.$router, () => {
+      this.address = this.userInfo.address
+    })
   }
 }
 </script>

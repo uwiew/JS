@@ -14,7 +14,7 @@ import ForgetComponent from '@/components/Login/Forget'
 import About from '@/views/About'
 import Mine from '@/views/Mine'
 import NotFound from '@/views/NotFound'
-
+import OrderStatus from '@/views/OrderStatus'
 import Order from '@/views/Order'
 
 Vue.use(Router)
@@ -36,6 +36,7 @@ const router = new Router({
       ]
     },
     { path: '/order/:goodsId', component: Order },
+    { path: '/orderStatus/:Id', component: OrderStatus },
     { path: '*', component: NotFound }
   ],
   scrollBehavior (to, from, savedPosition) {

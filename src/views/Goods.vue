@@ -18,11 +18,6 @@ import 'loaders.css/loaders.min.css'
 import { mapState } from 'vuex'
 
 export default {
-  // data () {
-  //   return {
-  //     timer: null
-  //   }
-  // },
   computed: {
     ...mapState({
       goodsList: state => state.goodsList.goodsList,
