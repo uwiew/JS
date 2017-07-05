@@ -79,7 +79,7 @@ $mobile-width = 767px
         padding: 0
         li
           font-size 15px
-          line-height 30px
+          line-height 50px
           font-weight 500
 
   @media (max-width: $mobile-width - 240px)
@@ -90,7 +90,7 @@ $mobile-width = 767px
     .buy-button
       width 100%
       box-sizing border-box
-      margin-bottom 10px
+      margin-bottom 15px
       &:last-child
         margin 0
 </style>
