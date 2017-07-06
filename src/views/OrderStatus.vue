@@ -24,12 +24,9 @@
           <p> - 运单号：{{order.expressId}}</p>
         </div>
         <p v-show="order.status === 1"> 如果货物到达，您可以选择
-          <el-button type="primary">确认收货</el-button>
+          <el-button type="primary" @click.native="confirm" >确认收货</el-button>
         </p>
       </div>
-      <p v-show="order.status === 1"> 如果货物到达，您可以选择
-        <el-button type="primary">确认收货</el-button>
-      </p>
       <div class="order">
         <div class="order-container" v-if="goods">
           <div class="order-item order-item-1">
@@ -85,6 +82,13 @@ export default {
     },
     goods () {
       return this.order.goods || {}
+    }
+  },
+  methods: {
+    async confirm () {
+      await http.get(`/userPrivate/confirm?orderId=${this.id}`)
+      this.order.status = 2
+      this.$message('您的订单已确认')
     }
   },
   async mounted () {
