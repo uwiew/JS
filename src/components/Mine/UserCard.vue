@@ -17,7 +17,7 @@
             <el-table-column fixed="right" label="操作" width="100">
               <template scope="scope">
                 <p v-if="scope.row.status === 0" style="color: #d85a63; fontSize: 12px">
-                  未送达
+                  未发货
                 </p>
                 <el-button @click="confirm(scope.$index)" type="text" size="small" v-if="scope.row.status === 1">
                   确认收货
