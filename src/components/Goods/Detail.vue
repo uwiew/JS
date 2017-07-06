@@ -81,8 +81,13 @@ $mobile-width = 767px
         padding: 0
         li
           font-size 15px
-          line-height 50px
+          line-height 60px
           font-weight 500
+          span
+            border 2px solid #4688f1
+            padding 8px
+            box-sizing border-box
+            border-radius 4px
 
   @media (max-width: $mobile-width - 240px)
     .pic, .desc

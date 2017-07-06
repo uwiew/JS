@@ -49,9 +49,21 @@
           <p v-show="!moneyIsEnough">
             <i class="el-icon-close"></i>&nbsp; 您的账户余额为 {{userInfo.money}} 元，金额不足以支付</p>
         </div>
-        <el-button @click.native="submitOrder" type="primary" :disabled="!moneyIsEnough" size="large">提交订单</el-button>
+        <el-button @click.native="dialogVisible = true" type="primary" :disabled="!moneyIsEnough" size="large">提交订单</el-button>
       </div>
     </div>
+
+    <el-dialog
+      title="确认订单"
+      :visible.sync="dialogVisible"
+      size="tiny"
+      :before-close=handleClose>
+      <span>是否购买？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="handleClose">取 消</el-button>
+        <el-button type="primary" @click="submitOrder">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -63,7 +75,8 @@ export default {
     return {
       count: 1,
       address: '',
-      goods: {}
+      goods: {},
+      dialogVisible: false
     }
   },
   computed: {
@@ -81,12 +94,17 @@ export default {
     }
   },
   methods: {
+    handleClose () {
+      this.dialogVisible = false
+      this.$message({ message: '你根本不是真正的机友', type: 'warning' })
+    },
     async submitOrder () {
       let order = (await http.post('/order/create', {
         goods: this.id,
         num: this.count,
         address: this.address
       })).data
+      this.$message({ message: '购买成功，订单已生成', type: 'success' })
       this.$router.push(`/orderStatus/${order._id}`)
     }
   },
