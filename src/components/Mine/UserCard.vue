@@ -1,23 +1,27 @@
 <template>
   <section class="user-card card">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tabs v-model="activeName">
       <el-tab-pane label="资本资料" name="info">
         <p>手机号码：{{ telephoneNum }}</p>
         <p>余额：￥{{ money }}</p>
       </el-tab-pane>
       <el-tab-pane label="订单查询" name="order">
         <p>
-          <el-table :data="tableData" border style="width: 100%">
-            <el-table-column fixed prop="date" label="日期" width="150"> </el-table-column>
-            <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
-            <el-table-column prop="province" label="省份" width="120"> </el-table-column>
-            <el-table-column prop="city" label="市区" width="120"> </el-table-column>
+          <el-table :data="orderList" border style="width: 100%">
+            <el-table-column prop="_id" label="订单号" width="230"> </el-table-column>
+            <el-table-column prop="name" label="商品名字" width="200"> </el-table-column>
+            <el-table-column prop="price" label="价格" width="100"> </el-table-column>
+            <el-table-column prop="num" label="数量" width="100"> </el-table-column>
+            <el-table-column prop="cost" label="总计" width="100"> </el-table-column>
             <el-table-column prop="address" label="地址" width="300"> </el-table-column>
-            <el-table-column prop="zip" label="邮编" width="120"> </el-table-column>
             <el-table-column fixed="right" label="操作" width="100">
               <template scope="scope">
-                <el-button @click="handleClick" type="text" size="small">查看</el-button>
-                <el-button type="text" size="small">编辑</el-button>
+                <el-button @click="confirm(scope.$index)" type="text" size="small" v-show="orderList[scope.$index].status === 1">
+                  确认收货
+                </el-button>
+                <p v-show="orderList[scope.$index].status === 1">
+                  等待商家发货
+                </p>
               </template>
             </el-table-column>
           </el-table>
@@ -31,39 +35,23 @@
 </template>
 
 <script>
+import http from 'axios'
+
 export default {
   data () {
     return {
       activeName: 'info',
-      tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
-      }]
+      dataOrderList: []
+    }
+  },
+  computed: {
+    orderList () {
+      return this.dataOrderList.map(function (ele) {
+        let {name, color, agent} = ele.goods
+        ele.name = name + color + agent
+        ele.price = ele.cost / ele.num
+        return ele
+      })
     }
   },
   props: {
@@ -71,8 +59,14 @@ export default {
     money: Number,
     address: String
   },
+  async mounted () {
+    this.dataOrderList = (await http.get('/userPrivate/orderList')).data
+  },
   methods: {
-    handleClick (tab, event) {
+    async confirm (index) {
+      let list = this.dataOrderList[index]
+      await http.get(`/userPrivate/confirm?orderId=${list._id}`)
+      list[index].status = 2
     }
   }
 }
