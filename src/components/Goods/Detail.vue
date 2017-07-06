@@ -18,6 +18,10 @@
         <el-button type="danger" @click="$router.push('/goods')" class="buy-button">圆润地离开</el-button>
       </div>
     </div>
+
+    <div class="pic-list" v-if="goods">
+      <img :src="item" v-for="(item, idx) in goods.detailPicList" :key="idx">
+    </div>
   </section>
 </template>
 
@@ -88,6 +92,16 @@ $mobile-width = 767px
             padding 8px
             box-sizing border-box
             border-radius 4px
+
+  .pic-list
+    max-width 1200px
+    img
+      margin 20px auto
+      width 60%
+      margin-bottom 20px
+      display block
+      &:last-child
+        margin-bottom 0
 
   @media (max-width: $mobile-width - 240px)
     .pic, .desc

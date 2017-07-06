@@ -8,19 +8,22 @@
       <el-tab-pane label="订单查询" name="order">
         <p>
           <el-table :data="orderList" border style="width: 100%">
-            <el-table-column prop="_id" label="订单号" width="230"> </el-table-column>
             <el-table-column prop="name" label="商品名字" width="200"> </el-table-column>
-            <el-table-column prop="price" label="价格" width="100"> </el-table-column>
-            <el-table-column prop="num" label="数量" width="100"> </el-table-column>
-            <el-table-column prop="cost" label="总计" width="100"> </el-table-column>
-            <el-table-column prop="address" label="地址" width="300"> </el-table-column>
+            <el-table-column prop="price" label="价格"> </el-table-column>
+            <el-table-column prop="num" label="数量"> </el-table-column>
+            <el-table-column prop="cost" label="总计"> </el-table-column>
+            <el-table-column prop="address" label="地址" width="100"> </el-table-column>
+            <el-table-column prop="_id" label="订单号" width="225"> </el-table-column>
             <el-table-column fixed="right" label="操作" width="100">
               <template scope="scope">
+                <p v-show="orderList[scope.$index].status === 0" style="color: #d85a63; fontSize: 12px">
+                  未送达
+                </p>
                 <el-button @click="confirm(scope.$index)" type="text" size="small" v-show="orderList[scope.$index].status === 1">
                   确认收货
                 </el-button>
-                <p v-show="orderList[scope.$index].status === 1">
-                  等待商家发货
+                <p v-show="orderList[scope.$index].status === 2" style="color: #41b783; fontSize: 12px">
+                  已确认
                 </p>
               </template>
             </el-table-column>
@@ -48,7 +51,7 @@ export default {
     orderList () {
       return this.dataOrderList.map(function (ele) {
         let {name, color, agent} = ele.goods
-        ele.name = name + color + agent
+        ele.name = name + ' ' + color + ' ' + agent
         ele.price = ele.cost / ele.num
         return ele
       })
