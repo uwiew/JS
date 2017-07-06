@@ -56,8 +56,7 @@
     <el-dialog
       title="确认订单"
       :visible.sync="dialogVisible"
-      size="tiny"
-      :before-close=handleClose>
+      :before-close="handleClose">
       <span>是否购买？</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="handleClose">取 消</el-button>

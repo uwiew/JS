@@ -37,7 +37,9 @@ a
   text-decoration: none
   &:hover, &:visited
     color $default-color
-
+::selection
+  background $default-color
+  color #fff
 
 #app
   font-family: 'Avenir', Helvetica, Arial, sans-serif

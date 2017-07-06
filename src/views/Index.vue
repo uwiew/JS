@@ -126,7 +126,7 @@ $mobile-width = 767px
       font-size 26px
 
   .sales-info
-    padding-top 20px
+    padding 20px 0
     width: 90%
     margin: 0 auto
     .sales-item
