@@ -1,6 +1,6 @@
 <template>
   <section class="goods">
-    <h2>商品列表</h2>
+    <!--<h2>商品列表</h2>-->
     <div class="goods-list">
       <goods-card v-for="(item, idx) in goodsList" :id="item._id" :name="item.name" :price="item.price" :pic="item.pic" :color="item.color" :agent="item.agent" :memory="item.memory" :key="idx"> </goods-card>
     </div>

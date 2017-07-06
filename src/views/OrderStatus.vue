@@ -1,26 +1,32 @@
 <template>
   <div class="order-sratus">
-    <el-steps :space="100" :active="order.status + 1" :center="true">
-      <el-step id="step1" title="待发货"></el-step>
-      <el-step id="step2" title="已发货"></el-step>
-      <el-step id="step3" title="已完成"></el-step>
-    </el-steps>
-    <div class="status">
-      <h3 v-show="order.status === 0">
-        <img src="../public/images/u948.jpg" alt="">&nbsp;&nbsp;&nbsp;
-        <span>订单状态：您的订单已提交，请等待商家发货</span>
-      </h3>
-      <h3 v-show="order.status === 1">
-        <img src="../public/images/u949.jpg" alt="">&nbsp;&nbsp;&nbsp;
-        <span>订单状态：您的订单已发出，正在运输中</span>
-      </h3>
-      <h3 v-show="order.status === 2">
-        <img src="../public/images/u947.jpg" alt="">&nbsp;&nbsp;&nbsp;
-        <span>订单状态：您的订单已已完成,有问题欢迎咨询客服</span>
-      </h3>
-      <div class="express" v-show="order.status === 1 || order.status === 2">
-        <p>- 物流：{{order.express}}  </p>
-        <p> - 运单号：{{order.expressId}}</p>
+    <div class="card">
+      <el-steps :space="100" :active="order.status + 1" :center="true">
+        <el-step id="step1" title="待发货"></el-step>
+        <el-step id="step2" title="已发货"></el-step>
+        <el-step id="step3" title="已完成"></el-step>
+      </el-steps>
+      <div class="status">
+        <h3 v-show="order.status === 0">
+          <img src="../public/images/u948.jpg" alt="">&nbsp;&nbsp;&nbsp;
+          <span>订单状态：您的订单已提交，请等待商家发货</span>
+        </h3>
+        <h3 v-show="order.status === 1">
+          <img src="../public/images/u949.jpg" alt="">&nbsp;&nbsp;&nbsp;
+          <span>订单状态：您的订单已发出，正在运输中</span>
+        </h3>
+        <h3 v-show="order.status === 2">
+          <img src="../public/images/u947.jpg" alt="">&nbsp;&nbsp;&nbsp;
+          <span>订单状态：您的订单已已完成,有问题欢迎咨询客服</span>
+        </h3>
+        <div class="express" v-show="order.status === 1 || order.status === 2">
+          <p>- 物流：{{order.express}}  </p>
+          <p> - 运单号：{{order.expressId}}</p>
+        </div>
+        <p v-show="order.status === 1">
+          如果货物到达，您可以选择
+          <el-button type="primary">确认收货</el-button>
+        </p>
       </div>
       <p v-show="order.status === 1">
         如果货物到达，您可以选择
@@ -60,6 +66,14 @@ export default {
 </script>
 <style lang="stylus">
 .order-sratus
+  .card
+    background #fff
+    border-radius 4px
+    box-shadow 1px 2px 5px rgba(0,0,0,0.1)
+    padding 40px 0 10px
+    box-sizing border-box
+    max-width 1000px
+    margin 0 auto
   .status
     h3
       margin-bottom 0px
@@ -129,7 +143,7 @@ export default {
           width 100%!important
       .check-money
         text-align center
-        
+
     .order-item-1
       width 35%
       .order-body
