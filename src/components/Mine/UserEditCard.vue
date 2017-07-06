@@ -14,12 +14,14 @@
 </template>
 
 <script>
+import http from 'axios'
+
 export default {
   data () {
     return {
       form: {
-        telephoneNum: null,
-        address: ''
+        telephoneNum: this.mineInfo.telephoneNum,
+        address: this.mineInfo.address
       },
       isLoading: false
     }
@@ -27,8 +29,10 @@ export default {
   props: ['mineInfo'],
   methods: {
     async submitEditUserInfo () {
-      console.log(this.form)
+      await http.post('/userPrivate/modify', this.form)
       this.$store.dispatch('initMine')
+      this.$message('成功修改')
+      this.$emit('close')
     }
   }
 }

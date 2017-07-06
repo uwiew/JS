@@ -23,7 +23,7 @@
     <div v-if="!isEdit">
       <user-card
         v-if="mineInfo && !mineInfo.isAdmin"
-        :telephoneNum="+mineInfo.telephoneNum"
+        :telephoneNum="mineInfo.telephoneNum"
         :money="mineInfo.money"
         :address="mineInfo.address">
       </user-card>
@@ -31,13 +31,12 @@
     </div>
     <div v-else>
       <user-edit-card
+        @close="isEdit = false"
         v-if="mineInfo && !mineInfo.isAdmin"
         :mineInfo="mineInfo">
       </user-edit-card>
       <admin-edit-card v-else></admin-edit-card>
     </div>
-
-
   </section>
 </template>
 

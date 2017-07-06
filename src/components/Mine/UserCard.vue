@@ -58,7 +58,7 @@ export default {
     }
   },
   props: {
-    telephoneNum: Number,
+    telephoneNum: String,
     money: Number,
     address: String
   },
