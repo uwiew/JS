@@ -205,9 +205,9 @@ export default {
       .order-body
         margin-top 33px
 #step1
-  width 33vw!important
+  width 45%!important
 #step2
-  width 33vw!important
+  width 45%!important
 #step3
   width 50px!important
 </style>
