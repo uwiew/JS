@@ -1,7 +1,7 @@
 <template>
   <section class="login">
     <div class="login-card">
-      <h1>机设</h1>
+      <h1>机社</h1>
       <p>踏踏实实做人，认认真真搞机。</p>
       <transition name="login-fade" mode="out-in">
         <router-view></router-view>
@@ -30,7 +30,7 @@ $default-color = #4688f1
   .login-card
     position relative
     margin 6% auto
-    background #fff
+    background rgba( 255, 255, 255, .8)
     width: 300px
     padding 30px 15px
     border-radius 4px
