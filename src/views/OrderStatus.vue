@@ -92,7 +92,6 @@ export default {
     margin-left auto
     width 50%
   .order
-    margin-top 20px
     width 100%
     .light
       color: #999999
