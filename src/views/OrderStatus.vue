@@ -103,6 +103,7 @@ export default {
     max-width 1200px
     margin 0 auto
   .status
+    margin-bottom 20px
     h3
       margin-bottom 0px
       span
