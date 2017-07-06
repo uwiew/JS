@@ -48,7 +48,8 @@
       background: rgba(91, 192, 222, 0.5)
     &:nth-child(3)
       left: 25%
-      background: rgba(238, 238, 238, 0.81)
+      // background: rgba(238, 238, 238, 0.81)
+      background: rgba(153, 102, 255, .8)
 
     &:nth-child(4)
       left: 40%
@@ -89,7 +90,7 @@
 
     &:nth-child(5)
       left: 70%
-      background: rgba(255, 170, 0, 0.8)
+      background: rgba(153, 102, 255, 0.4)
 
     &:nth-child(6)
       left: 80%
