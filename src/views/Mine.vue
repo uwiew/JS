@@ -37,7 +37,7 @@
       <admin-edit-card v-else></admin-edit-card>
     </div>
 
-    <!--<bg></bg>-->
+      
   </section>
 </template>
 
