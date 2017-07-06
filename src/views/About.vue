@@ -38,12 +38,12 @@
         </div>
       </div>
 
-      <div class="technology-info info">
+      <!--<div class="technology-info info">
         <h2>关于技术</h2>
-        <!--<ul>
+        <ul>
           <li></li>
-        </ul>-->
-      </div>
+        </ul>
+      </div>-->
     </div>
   </section>
 </template>
