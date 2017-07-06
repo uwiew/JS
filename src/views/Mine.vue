@@ -33,6 +33,8 @@
       </user-edit-card>
       <admin-edit-card v-else></admin-edit-card>
     </div>
+
+    <!--<bg></bg>-->
   </section>
 </template>
 
@@ -42,6 +44,7 @@ import AdminCard from '../components/Mine/AdminCard'
 import UserEditCard from '../components/Mine/UserEditCard'
 import AdminEditCard from '../components/Mine/AdminEditCard'
 import common from '../public/js/common'
+import bg from '../components/Common/Bg'
 
 export default {
   data () {
@@ -81,7 +84,8 @@ export default {
     UserCard,
     AdminCard,
     UserEditCard,
-    AdminEditCard
+    AdminEditCard,
+    bg
   }
 }
 </script>
