@@ -16,13 +16,13 @@
             <el-table-column prop="_id" label="订单号" width="225"> </el-table-column>
             <el-table-column fixed="right" label="操作" width="100">
               <template scope="scope">
-                <p v-if="scope.row.status === 0" style="color: #d85a63; fontSize: 12px">
-                  未发货
-                </p>
                 <el-button @click="confirm(scope.$index)" type="text" size="small" v-if="scope.row.status === 1">
                   确认收货
                 </el-button>
-                <p v-if="scope.row.status === 2" style="color: #41b783; fontSize: 12px">
+                <p v-if="scope.row.status === 0" style="color: #d85a63; font-size: 12px;">
+                  未发货
+                </p>
+                <p v-if="scope.row.status === 2" style="color: #41b783; font-size: 12px;">
                   已确认
                 </p>
               </template>
