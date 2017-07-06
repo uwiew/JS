@@ -16,13 +16,13 @@
             <el-table-column prop="_id" label="订单号" width="225"> </el-table-column>
             <el-table-column fixed="right" label="操作" width="100">
               <template scope="scope">
-                <p v-show="orderList[scope.$index].status === 0" style="color: #d85a63; fontSize: 12px">
+                <p v-if="scope.row.status === 0" style="color: #d85a63; fontSize: 12px">
                   未送达
                 </p>
-                <el-button @click="confirm(scope.$index)" type="text" size="small" v-show="orderList[scope.$index].status === 1">
+                <el-button @click="confirm(scope.$index)" type="text" size="small" v-if="scope.row.status === 1">
                   确认收货
                 </el-button>
-                <p v-show="orderList[scope.$index].status === 2" style="color: #41b783; fontSize: 12px">
+                <p v-if="scope.row.status === 2" style="color: #41b783; fontSize: 12px">
                   已确认
                 </p>
               </template>
@@ -69,7 +69,7 @@ export default {
     async confirm (index) {
       let list = this.dataOrderList[index]
       await http.get(`/userPrivate/confirm?orderId=${list._id}`)
-      list[index].status = 2
+      list.status = 2
     }
   }
 }
