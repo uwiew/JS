@@ -17,7 +17,8 @@
 
 <style lang="stylus">
 .bg-bubbles
-  position: absolute
+  box-sizing border-box
+  position: fixed
   top: 0
   left: 0
   width: 100%
