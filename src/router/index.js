@@ -36,7 +36,7 @@ const router = new Router({
       ]
     },
     { path: '/order/:goodsId', component: Order },
-    { path: '/orderStatus/:Id', component: OrderStatus },
+    { path: '/orderStatus/:id', component: OrderStatus },
     { path: '*', component: NotFound }
   ],
   scrollBehavior (to, from, savedPosition) {

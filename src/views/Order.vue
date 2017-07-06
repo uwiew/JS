@@ -82,12 +82,12 @@ export default {
   },
   methods: {
     async submitOrder () {
-      await http.post('/order/create', {
+      let order = (await http.post('/order/create', {
         goods: this.id,
         num: this.count,
         address: this.address
-      })
-      window.alert('success')
+      })).data
+      this.$router.push(`/orderStatus/${order._id}`)
     }
   },
   async mounted () {

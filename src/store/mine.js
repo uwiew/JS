@@ -31,6 +31,7 @@ export default {
         userInfo = (await http.get(`/userPrivate/info`)).data
       } catch (e) {
         state.isFinishUpdate = true
+        return
       }
       state.isFinishUpdate = false
       commit('setMine', userInfo)
