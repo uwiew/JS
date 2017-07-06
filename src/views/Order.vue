@@ -130,6 +130,7 @@ $mobile-width = 767px
 
   .order-container
     display flex
+    width 100% !important
     // border 1px solid #eaeefb
     // box-shadow 1px 2px 5px rgba(0,0,0,.1)
     // border-radius 4px

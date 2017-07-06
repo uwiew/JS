@@ -32,10 +32,10 @@
         如果货物到达，您可以选择
         <el-button type="primary">确认收货</el-button>
       </p>
-    </div>
-    <order-list :goods='goods'
+      <order-list :goods='goods'
                 :order='order'
                 ></order-list>
+    </div>
   </div>
 </template>
 <script>
@@ -108,7 +108,7 @@ export default {
     .order-container
       margin-right auto
       margin-left auto
-      width 74%
+      width 96%
       display flex
 
     .order-item
