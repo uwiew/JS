@@ -1,7 +1,7 @@
 <template>
   <section class="mine">
     <div class="mine-card card" v-if="mineInfo">
-      <header :class="{ isAdmin: mineInfo.isAdmin }">
+      <header>
         <h2>{{ mineInfo.name }}</h2>
         <el-button class="submitInfo" @click="isEdit = !isEdit" v-if="!mineInfo.isAdmin">{{ isEdit ? '放弃修改' : '修改资料' }}</el-button>
       </header>
@@ -37,7 +37,7 @@
       <admin-edit-card v-else></admin-edit-card>
     </div>
 
-      
+
   </section>
 </template>
 
@@ -114,8 +114,6 @@ $mobile-width = 767px
     margin: 0 auto
     animation fade-mine-card .45s ease-in-out
     position relative
-    .isAdmin
-      background #41b783 !important
     header
       height 200px
       background #4688f1
