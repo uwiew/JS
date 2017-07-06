@@ -72,7 +72,7 @@ export default {
     box-shadow 1px 2px 5px rgba(0,0,0,0.1)
     padding 40px 0 10px
     box-sizing border-box
-    max-width 1000px
+    max-width 1200px
     margin 0 auto
   .status
     h3
@@ -108,7 +108,7 @@ export default {
     .order-container
       margin-right auto
       margin-left auto
-      width 96%
+      width 96% !important
       display flex
 
     .order-item

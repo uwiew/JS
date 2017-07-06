@@ -119,7 +119,7 @@ $mobile-width = 767px
     border-radius 4px
     box-sizing border-box
     padding 20px
-    max-width 1000px
+    max-width 1200px
     margin 0 auto
 
   .order-head
