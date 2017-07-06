@@ -2,7 +2,18 @@
   <section class="goods">
     <!--<h2>商品列表</h2>-->
     <div class="goods-list">
-      <goods-card v-for="(item, idx) in goodsList" :id="item._id" :name="item.name" :price="item.price" :pic="item.pic" :color="item.color" :agent="item.agent" :memory="item.memory" :key="idx"> </goods-card>
+      <goods-card
+        v-for="(item, idx) in goodsList"
+        :id="item._id"
+        :name="item.name"
+        :price="item.price"
+        :pic="item.pic"
+        :color="item.color"
+        :agent="item.agent"
+        :memory="item.memory"
+        :disable="item.disable"
+        :key="idx">
+      </goods-card>
     </div>
     <div class="loading ball-pulse-sync" v-show="isLoading">
       <div id="load1"></div>
