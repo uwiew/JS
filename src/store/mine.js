@@ -24,6 +24,9 @@ export default {
       let { data } = await mine.post('/user/login', { name: username, password })
       commit('setMine', data)
     },
+    async fetchSignup ({ commit, state }, { username, password }) {
+      await mine.post('/user/register', { name: username, password })
+    },
     async updateUserInfo ({ commit, state }) {
       let userInfo
       state.isFinishUpdate = false

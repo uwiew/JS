@@ -3,10 +3,11 @@
     <div class="mine-card card" v-if="mineInfo">
       <header>
         <h2>{{ mineInfo.name }}</h2>
-        <el-button class="submitInfo">修改资料</el-button>
+        <el-button class="submitInfo" @click="isEdit = !isEdit">{{ isEdit ? '放弃修改' : '修改资料' }}</el-button>
       </header>
       <div class="head-img">
-        <img :src="mineInfo.headImgUrl" alt=""> </div>
+        <img :src="mineInfo.headImgUrl" alt="">
+      </div>
       <div class="user-list">
         <h3>累计剁手
           <span class="mark"> ￥{{ mineInfo.buyNum }}</span>
@@ -15,17 +16,42 @@
           <span class="mark"> 96% </span>的机友</h3>
       </div>
     </div>
-    <user-card v-if="mineInfo && !mineInfo.isAdmin" :telephoneNum="+mineInfo.telephoneNum" :money="mineInfo.money" :address="mineInfo.address"> </user-card>
-    <admin-card v-else></admin-card>
+
+    <div v-if="!isEdit">
+      <user-card
+        v-if="mineInfo && !mineInfo.isAdmin"
+        :telephoneNum="+mineInfo.telephoneNum"
+        :money="mineInfo.money"
+        :address="mineInfo.address">
+      </user-card>
+      <admin-card v-else></admin-card>
+    </div>
+    <div v-else>
+      <user-edit-card
+        v-if="mineInfo && !mineInfo.isAdmin"
+        :mineInfo="mineInfo">
+      </user-edit-card>
+      <admin-edit-card v-else></admin-edit-card>
+    </div>
+
+    <!--<bg></bg>-->
   </section>
 </template>
 
 <script>
 import UserCard from '../components/Mine/UserCard'
 import AdminCard from '../components/Mine/AdminCard'
+import UserEditCard from '../components/Mine/UserEditCard'
+import AdminEditCard from '../components/Mine/AdminEditCard'
 import common from '../public/js/common'
+import bg from '../components/Common/Bg'
 
 export default {
+  data () {
+    return {
+      isEdit: false
+    }
+  },
   computed: {
     mineInfo () {
       return this.$store.state.mine.mine || {}
@@ -34,9 +60,32 @@ export default {
   mounted () {
     common.checkLogin(this.$store.state.mine, this.$router)
   },
+  methods: {
+    editInfo () {
+      this.$prompt('请输入邮箱', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+        inputErrorMessage: '邮箱格式不正确'
+      }).then(({ value }) => {
+        this.$message({
+          type: 'success',
+          message: '你的邮箱是: ' + value
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消输入'
+        })
+      })
+    }
+  },
   components: {
     UserCard,
-    AdminCard
+    AdminCard,
+    UserEditCard,
+    AdminEditCard,
+    bg
   }
 }
 </script>
@@ -54,7 +103,10 @@ $mobile-width = 767px
     box-shadow 1px 2px 5px rgba(0,0,0,0.1)
     box-sizing border-box
     overflow hidden
-
+    p
+      line-height 25px
+      font-size 15px
+      font-weight 500
   .mine-card
     margin: 0 auto
     animation fade-mine-card .45s ease-in-out

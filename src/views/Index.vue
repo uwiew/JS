@@ -5,14 +5,24 @@
       </el-carousel-item>
     </el-carousel>
 
-    <div class="sales-info">
-      <h2>大数统计</h2>
-      <div class="sales-list">
-        <div class="sales">
+    <div class="number-info info">
+      <!--<h2>给机儿放天假</h2>-->
+      <div class="number-list list">
+        <div class="number-item" v-for="(item, idx) in number" :key="idx">
+          <h3>{{ item.fromData }}</h3>
+          <p>{{ item.title }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sales-info info">
+      <!--<h2>大数统计</h2>-->
+      <div class="sales-list list">
+        <div class="sales-item">
           <h3>剁手排行</h3>
           <canvas id="chartBuyNum" width="100" height="100"></canvas>
         </div>
-        <div class="sales">
+        <div class="sales-item">
           <h3>销量份额</h3>
           <canvas id="chartSalesNum"></canvas>
         </div>
@@ -27,6 +37,7 @@ import http from 'axios'
 import Chart from 'chart.js'
 import chartBuyNumOption from '../components/Index/chartBuyNum.js'
 import chartSalesNumOption from '../components/Index/chartSalesNum.js'
+import TWEEN from 'tween.js'
 
 export default {
   data () {
@@ -36,26 +47,51 @@ export default {
         require('../public/images/index_banner_1.jpg')
       ],
       chartBuyNum: null,
-      chartSalesNum: null
+      chartSalesNum: null,
+      number: {
+        one: { title: '订单总数', fromData: 0, toData: 998 },
+        two: { title: '累计金额', fromData: 0, toData: 6666666 },
+        three: { title: '用户总数', fromData: 0, toData: 233333 }
+      }
     }
   },
   mounted () {
+    this.animateNumber()
     this.initCanvas()
   },
   methods: {
     async initCanvas () {
+      // 剁手排行柱状图
       let chartBuyNumId = document.getElementById('chartBuyNum')
       this.chartBuyNum = new Chart(chartBuyNumId, chartBuyNumOption)
 
-      // 销量饼图
+      // 销量份额饼图
       let goodsList = (await http.get('/goods/list')).data
       goodsList = goodsList.sort((a, b) => b.salesNum - a.salesNum).slice(0, 5)
 
-      chartSalesNumOption.data.labels = goodsList.map(el => el.name + ' ' + el.memory + 'G')
+      chartSalesNumOption.data.labels = goodsList.map(el => el.name + ' ' + el.memory + 'G' + ' ' + el.color)
       chartSalesNumOption.data.datasets[0].data = goodsList.map(el => el.salesNum)
 
       let chartSalesNumId = document.getElementById('chartSalesNum')
       this.chartSalesNum = new Chart(chartSalesNumId, chartSalesNumOption)
+    },
+    animateNumber () {
+      let vm = this
+      function animate (time) {
+        requestAnimationFrame(animate)
+        TWEEN.update(time)
+      }
+      new TWEEN.Tween({ one: 0, two: 0, three: 0 })
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .to({ one: vm.number.one.toData, two: vm.number.two.toData, three: vm.number.three.toData }, 1500)
+        .onUpdate(function () {
+          vm.number.one.fromData = this.one.toFixed(0)
+          vm.number.two.fromData = this.two.toFixed(0)
+          vm.number.three.fromData = this.three.toFixed(0)
+        })
+        .delay(800)
+        .start()
+      animate()
     }
   }
 }
@@ -68,28 +104,44 @@ $mobile-width = 767px
   padding 0 !important
   .carousel
     width: 100%
-    margin-bottom: 20px
-  .sales-info
-    width: 90%
-    margin: 0 auto
+    // margin-bottom: 20px
+
+  .info
     overflow: hidden
     h2
       text-align: center
       border-bottom: 3px dashed #eee
       padding-bottom: 10px
-  .sales-list
-    // width 50vw
-    display: flex
-    flex-wrap: wrap
-    justify-content: space-around
-    .sales
-      width 30vw
+    .list
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-around
+  .number-info
+    background-color #fff
+    text-align center
+    .number-item
+      width calc(100% / 3)
+    h3
+      color #4688f1
+      font-size 26px
+
+  .sales-info
+    padding-top 20px
+    width: 90%
+    margin: 0 auto
+    .sales-item
+      background-color #fff
+      padding 20px
+      box-shadow 1px 2px 5px rgba(0,0,0,0.1)
+      box-sizing border-box
+      width 35vw
+
       // padding: 20px
       // box-sizing: border-box
 
   @media (max-width: $mobile-width)
     .sales-list
-      .sales
+      .sales-item
         width 80vw
         margin-bottom: 50px
         &:last-child

@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     handleClick (tab, event) {
-      console.log(tab, event)
     }
   }
 }
@@ -42,10 +41,7 @@ $mobile-width = 767px
   animation fade-mine-card .85s ease-in-out
   margin 10px auto 0
   padding 20px
-  p
-    line-height 25px
-    font-size 15px
-    font-weight 500
+
   @media (max-width $mobile-width)
     width 100% !important
 </style>

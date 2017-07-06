@@ -1,24 +1,29 @@
 <template>
   <section class="about">
     <div class="bg"></div>
+
     <div class="list">
       <div class="banner">
         <h2>关于机社</h2>
         <p>踏踏实实做人，认认真真搞机</p>
       </div>
+
       <div class="info">
         <img src="../public/images/logo.png" alt="logo" class="logo">
         <p>这是一个<del>神奇的网站</del>从事产品代理及销售配送手机的网上购物平台。</p>
         <p>我们始终坚持用户至上，用心服务于客户的经营理念，坚持用自己的服务去打动客户。</p>
       </div>
+
       <div class="banner">
         <h2>关于团队</h2>
         <p>一个充满活力鼓励划水的团队</p>
       </div>
+
       <div class="info">
         <p>既然我们已经起航，</p>
         <p>就让我们完美的降落。</p>
       </div>
+
       <div class="team-info info">
         <h2>团队成员</h2>
         <div class="team-list">
@@ -31,6 +36,13 @@
             :key="idx">
           </team-card>
         </div>
+      </div>
+
+      <div class="technology-info info">
+        <h2>关于技术</h2>
+        <!--<ul>
+          <li></li>
+        </ul>-->
       </div>
     </div>
   </section>
