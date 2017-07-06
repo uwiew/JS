@@ -57,6 +57,8 @@ $mobile-width = 767px
     padding 20px
     box-sizing border-box
     background #fff
+    max-width 1000px
+    margin 0 auto
     .pic
       width 32%
       img

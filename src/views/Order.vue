@@ -1,6 +1,6 @@
 <template>
   <div class="order">
-    <h2>提交订单</h2>
+    <!--<h2>提交订单</h2>-->
     <div class="card">
       <div class="order-container" v-if="goods">
         <div class="order-item order-item-1">
@@ -119,6 +119,8 @@ $mobile-width = 767px
     border-radius 4px
     box-sizing border-box
     padding 20px
+    max-width 1000px
+    margin 0 auto
 
   .order-head
     line-height: 45px
@@ -167,7 +169,7 @@ $mobile-width = 767px
         width 100%!important
     .check-money
       text-align center
-      
+
   .order-item-1
     width 30%
     .order-body
@@ -210,7 +212,7 @@ $mobile-width = 767px
     i.el-icon-check
       color #13ce66
     i.el-icon-close
-      color #fc615d  
+      color #fc615d
 
   .submit
     // container()

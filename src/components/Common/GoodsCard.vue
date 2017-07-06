@@ -5,7 +5,7 @@
       <h3>{{ name }}</h3>
       <b>￥ {{ price }}</b>
       <p>
-        {{color}} 、{{agent}} 、{{memory}}G 
+        {{color}} 、{{agent}} 、{{memory}}G
       </p>
     </figcaption>
   </figure>
