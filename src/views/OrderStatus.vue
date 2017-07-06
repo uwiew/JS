@@ -27,58 +27,23 @@
         <el-button type="primary">确认收货</el-button>
       </p>
     </div>
-    <div class="order">
-      <div class="order-container" v-if="goods">
-        <div class="order-item order-item-1">
-          <div class="order-head">产品名称</div>
-          <div class="order-body">
-            <img :src="goods.pic" :alt="goods.name">
-            <router-link :to="`/goods/${goods._id}`">
-              <div>
-                <p>{{ goods.name }}、{{ goods.color }}、{{ goods.memory }}G、{{ goods.agent }}</p>
-              </div>
-            </router-link>
-          </div>
-        </div>
-        <div class="order-item order-item-2">
-          <div class="order-head">价格</div>
-          <div style="height:100%">
-            <div class="order-body">
-              <p>￥{{ order.cost/order.num }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="order-item order-item-3">
-          <div class="order-head"> 数量 </div>
-          <div class="order-body">
-            {{order.num}}件
-          </div>
-        </div>
-        <div class="order-item order-item-4">
-          <div class="order-head"> 总计 </div>
-          <div class="order-body">
-            ￥ {{order.cost}}
-          </div>
-        </div>
-        <div class="order-item order-item-5">
-          <div class="order-head">收货地址</div>
-          <div class="order-body">
-            <p>
-             {{order.address}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <order-list :goods='goods'
+                :order='order'
+                ></order-list>
   </div>
 </template>
 <script>
 import http from 'axios'
+import OrderList from './OrderList'
 
 export default {
   data () {
     return {
       order: {}
     }
+  },
+  components: {
+    OrderList
   },
   computed: {
     id () {
