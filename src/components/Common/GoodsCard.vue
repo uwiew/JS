@@ -1,5 +1,5 @@
 <template>
-  <figure class="goods-card" @click="$router.push('/goods/' + id)">
+  <figure class="goods-card" @click="disable || $router.push('/goods/' + id)" :style="{ border: disable ? '1px solid #d85a63' : 'none', cursor: disable ? 'not-allowed' : 'pointer' }">
     <img :src="pic" :alt="name">
     <figcaption>
       <h3>{{ name }}</h3>
@@ -20,7 +20,8 @@ export default {
     agent: String,
     memory: Number,
     price: Number,
-    id: String
+    id: String,
+    disable: Boolean
   }
 }
 </script>
@@ -30,13 +31,13 @@ export default {
   width 22%
   margin 0 0 30px
   transition all .2s linear
-  background #fff
   padding 20px 5px
   box-sizing: border-box
   text-align center
   border 1px solid #eaeefb
   border-radius 4px
-  cursor pointer
+  // cursor pointer
+  background #fff
   &:hover
     box-shadow 0 15px 30px rgba(0, 0, 0, 0.1)
     transform translate3d(0, -2px, 0)

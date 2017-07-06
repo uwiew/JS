@@ -12,8 +12,8 @@
         <h3>累计剁手
           <span class="mark"> ￥{{ mineInfo.buyNum }}</span>
         </h3>
-        <h3>您已超过了
-          <span class="mark"> 96% </span>的机友</h3>
+        <!--<h3>您已超过了-->
+          <!--<span class="mark"> 96% </span>的机友</h3>-->
       </div>
       <div class="user-list" v-else>
         <h3>机社管理员</h3>

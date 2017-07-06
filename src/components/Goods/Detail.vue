@@ -108,6 +108,9 @@ $mobile-width = 767px
       width 100% !important
     .pic
       margin-bottom 20px
+    .pic-list
+      img
+        width 100%
     .buy-button
       width 100%
       box-sizing border-box
