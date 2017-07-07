@@ -6,10 +6,9 @@
     </el-carousel>
 
     <div class="number-info info">
-      <!--<h2>给机儿放天假</h2>-->
       <div class="number-list list">
         <div class="number-item" v-for="(item, idx) in number" :key="idx">
-          <h3>{{ item.fromData }}</h3>
+          <h3>{{ item.fromData | beautifyNumber }}</h3>
           <p>{{ item.title }}</p>
         </div>
       </div>
@@ -69,6 +68,17 @@ export default {
       strings: ['注册就送 ￥5000', '踏踏实实做人，认认真真搞机', '今天大家的机儿都放假了吗？', ':)'],
       loop: true
     })
+  },
+  filters: {
+    beautifyNumber (value) {
+      let temp = value.toString().split('')
+      let ret = []
+      for (let i = temp.length - 1, cnt = 1; i >= 0; i--, cnt++) {
+        ret.push(temp[i])
+        cnt % 3 === 0 && temp[i - 1] && ret.push(',')
+      }
+      return ret.reverse().join('')
+    }
   },
   methods: {
     async initCanvas () {
