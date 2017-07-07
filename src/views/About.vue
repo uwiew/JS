@@ -101,6 +101,7 @@ $mobile-width = 767px
       margin-bottom 10px
     p
       letter-spacing .288rem
+      font-weight 500
   .info
     padding 100px
     box-sizing border-box

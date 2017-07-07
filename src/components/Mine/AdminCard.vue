@@ -82,18 +82,22 @@ export default {
       this.goodsList.unshift(goods)
     },
     async onsale (index) {
+      let phone = this.goodsList[index]
       await http.post('/admin/modifyGoods', {
-        id: this.goodsList[index]._id,
+        id: phone._id,
         disable: false
       })
-      this.goodsList[index].disable = false
+      this.$message({ type: 'success', message: `已上架 ${phone.name} ${phone.memory}G ${phone.color}` })
+      phone.disable = false
     },
     async offsale (index) {
+      let phone = this.goodsList[index]
       await http.post('/admin/modifyGoods', {
-        id: this.goodsList[index]._id,
+        id: phone._id,
         disable: true
       })
-      this.goodsList[index].disable = true
+      this.$message({ type: 'success', message: `已下架 ${phone.name} ${phone.memory}G ${phone.color}` })
+      phone.disable = true
     }
   }
 }
