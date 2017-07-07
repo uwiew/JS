@@ -29,6 +29,12 @@
       </div>
     </div>
 
+    <!--<div class="type-info info">
+      <h3>
+        Hello <span class="ityped"></span>
+      </h3>
+    </div>-->
+
   </section>
 </template>
 
@@ -38,6 +44,7 @@ import Chart from 'chart.js'
 import chartBuyNumOption from '../components/Index/chartBuyNum.js'
 import chartSalesNumOption from '../components/Index/chartSalesNum.js'
 import TWEEN from 'tween.js'
+// import ityped from 'ityped'
 
 export default {
   data () {
@@ -58,6 +65,10 @@ export default {
   mounted () {
     this.animateNumber()
     this.initCanvas()
+    // ityped.init(document.querySelector('.ityped'), {
+    //   strings: ['World', 'Universe'],
+    //   loop: true
+    // })
   },
   methods: {
     async initCanvas () {
