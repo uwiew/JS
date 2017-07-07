@@ -2,8 +2,9 @@
   <section class="user-card card">
     <el-tabs v-model="activeName">
       <el-tab-pane label="资本资料" name="info">
-        <p>手机号码：{{ telephoneNum }}</p>
         <p>余额：￥{{ money }}</p>
+        <p>手机号码：{{ telephoneNum }}</p>
+        <p>地址：{{ address }}</p>
       </el-tab-pane>
       <el-tab-pane label="订单查询" name="order">
         <p>
@@ -31,9 +32,6 @@
             </el-table-column>
           </el-table>
         </p>
-      </el-tab-pane>
-      <el-tab-pane label="地址管理" name="address">
-        <p>地址：{{ address }}</p>
       </el-tab-pane>
     </el-tabs>
   </section>
