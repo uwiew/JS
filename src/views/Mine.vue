@@ -115,7 +115,8 @@ $mobile-width = 767px
     position relative
     header
       height 200px
-      background #4688f1
+      // background #4688f1
+      background linear-gradient(180deg,#5793f2,#4688f1)
       position relative
       h2, .submitInfo
         position absolute

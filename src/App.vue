@@ -108,5 +108,5 @@ a
     // transform: translateX(0)
   .fade-enter, .fade-leave-active
     opacity: 0
-    transform: translateX(10px)
+    transform: translateX(50px)
 </style>

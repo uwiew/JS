@@ -38,12 +38,10 @@
         </div>
       </div>
 
-      <!--<div class="technology-info info">
+      <div class="banner">
         <h2>关于技术</h2>
-        <ul>
-          <li></li>
-        </ul>
-      </div>-->
+        <p>全栈 JavaScript</p>
+      </div>
     </div>
   </section>
 </template>
@@ -92,17 +90,18 @@ $mobile-width = 767px
     &:first-child
       background transparent url('../public/images/about_0.jpg') center center no-repeat
       background-size cover
-
-
-
     &:nth-child(3)
       background transparent
+    &:nth-child(6)
+      background transparent url('../public/images/about_2.gif') center center no-repeat
+      background-size cover
     h2
       font-size 3rem
-      font-weight 300
+      font-weight 400
       margin-bottom 10px
     p
       letter-spacing .288rem
+      font-weight 500
   .info
     padding 100px
     box-sizing border-box

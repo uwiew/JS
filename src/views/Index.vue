@@ -6,10 +6,9 @@
     </el-carousel>
 
     <div class="number-info info">
-      <!--<h2>给机儿放天假</h2>-->
       <div class="number-list list">
         <div class="number-item" v-for="(item, idx) in number" :key="idx">
-          <h3>{{ item.fromData }}</h3>
+          <h3>{{ item.fromData | beautifyNumber }}</h3>
           <p>{{ item.title }}</p>
         </div>
       </div>
@@ -29,6 +28,12 @@
       </div>
     </div>
 
+    <div class="type-info info">
+      <h2>
+        <span class="ityped"></span>
+      </h2>
+    </div>
+
   </section>
 </template>
 
@@ -38,6 +43,7 @@ import Chart from 'chart.js'
 import chartBuyNumOption from '../components/Index/chartBuyNum.js'
 import chartSalesNumOption from '../components/Index/chartSalesNum.js'
 import TWEEN from 'tween.js'
+import ityped from 'ityped'
 
 export default {
   data () {
@@ -58,6 +64,21 @@ export default {
   mounted () {
     this.animateNumber()
     this.initCanvas()
+    ityped.init(document.querySelector('.ityped'), {
+      strings: ['注册就送 ￥5000', '踏踏实实做人，认认真真搞机', '今天大家的机儿都放假了吗？', ':)'],
+      loop: true
+    })
+  },
+  filters: {
+    beautifyNumber (value) {
+      let temp = value.toString().split('')
+      let ret = []
+      for (let i = temp.length - 1, cnt = 1; i >= 0; i--, cnt++) {
+        ret.push(temp[i])
+        cnt % 3 === 0 && temp[i - 1] && ret.push(',')
+      }
+      return ret.reverse().join('')
+    }
   },
   methods: {
     async initCanvas () {
@@ -69,7 +90,7 @@ export default {
       let goodsList = (await http.get('/goods/list')).data
       goodsList = goodsList.sort((a, b) => b.salesNum - a.salesNum).slice(0, 5)
 
-      chartSalesNumOption.data.labels = goodsList.map(el => el.name + ' ' + el.memory + 'G' + ' ' + el.color)
+      chartSalesNumOption.data.labels = goodsList.map(el => el.name + ' ' + el.memory + 'G ' + el.color)
       chartSalesNumOption.data.datasets[0].data = goodsList.map(el => el.salesNum)
 
       let chartSalesNumId = document.getElementById('chartSalesNum')
@@ -112,6 +133,7 @@ $mobile-width = 767px
       text-align: center
       border-bottom: 3px dashed #eee
       padding-bottom: 10px
+      font-size 50px
     .list
       display: flex
       flex-wrap: wrap
@@ -135,15 +157,16 @@ $mobile-width = 767px
       box-shadow 1px 2px 5px rgba(0,0,0,0.1)
       box-sizing border-box
       width 35vw
-
-      // padding: 20px
-      // box-sizing: border-box
-
-  @media (max-width: $mobile-width)
-    .sales-list
+    @media (max-width: $mobile-width)
+      width: 96%
       .sales-item
-        width 80vw
+        // width 80vw
+        // width 90vw
+        width 100%
         margin-bottom: 50px
         &:last-child
           margin-bottom: 0
+
+  .ityped-cursor
+    color #4688f1
 </style>
