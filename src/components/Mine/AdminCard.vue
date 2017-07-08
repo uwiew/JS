@@ -52,7 +52,7 @@
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="100">
               <template scope="scope">
-                <el-button @click.native="dialogFormVisible = true,expressForm.id = scope.row._id,expressFormIndex = scope.$index" v-if="scope.row.status === 0" style="color: #d85a63; font-size: 12px;"> 发货 </el-button>
+                <el-button @click.native="beforeShip(scope)" v-if="scope.row.status === 0" style="color: #d85a63; font-size: 12px;"> 发货 </el-button>
                 <p v-if="scope.row.status === 2" style="color: #4688f1; font-size: 12px;"> 已确认收货 </p>
                 <p v-if="scope.row.status === 1" style="color: #41b783; font-size: 12px;"> 已发货 </p>
               </template>
@@ -61,10 +61,18 @@
         </p>
         <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
           <el-form :model="expressForm">
-            <el-form-item label="快递" label-width="100px">
-              <el-input v-model="expressForm.express" auto-complete="off"></el-input>
+            <el-form-item label="快递" label-width="40px">
+              <!--<el-input v-model="expressForm.express" auto-complete="off"></el-input>-->
+              <el-select v-model="expressForm.express">
+              <el-option
+                v-for="item in expressOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
             </el-form-item>
-            <el-form-item label="快递单号" label-width="100px">
+            <el-form-item label="单号" label-width="40px">
               <el-input v-model="expressForm.expressId" auto-complete="off"></el-input>
             </el-form-item>
           </el-form>
@@ -97,7 +105,17 @@ export default {
         id: 0,
         express: '',
         expressId: ''
-      }
+      },
+      expressOptions: [
+        { value: '不通', label: '不通' },
+        { value: '援通', label: '援通' },
+        { value: '噗通', label: '噗通' },
+        { value: '马通', label: '马通' },
+        { value: '吮峰', label: '吮峰' },
+        { value: '孕达', label: '孕达' },
+        { value: '上通', label: '上通' },
+        { value: '下通', label: '下通' }
+      ]
     }
   },
   computed: {
@@ -170,6 +188,12 @@ export default {
         expressId: 0
       }
       this.dialogFormVisible = false
+    },
+    beforeShip (scope) {
+      this.expressForm.expressId = Date.now()
+      this.dialogFormVisible = true
+      this.expressForm.id = scope.row._id
+      this.expressFormIndex = scope.$index
     }
   },
   async mounted () {
