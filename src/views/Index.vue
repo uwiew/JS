@@ -53,9 +53,9 @@ export default {
       chartBuyNum: null,
       chartSalesNum: null,
       number: {
-        one: { title: '订单总数', fromData: 0, toData: 998 },
-        two: { title: '累计金额', fromData: 0, toData: 6666666 },
-        three: { title: '用户总数', fromData: 0, toData: 233333 }
+        one: { title: '订单总数', fromData: 0, toData: 0 },
+        two: { title: '累计金额', fromData: 0, toData: 0 },
+        three: { title: '用户总数', fromData: 0, toData: 0 }
       }
     }
   },
