@@ -29,7 +29,6 @@
         <span class="ityped"></span>
       </h2>
     </div>
-
     <js-footer></js-footer>
   </section>
 </template>
@@ -57,10 +56,6 @@ export default {
         one: { title: '订单总数', fromData: 0, toData: 998 },
         two: { title: '累计金额', fromData: 0, toData: 6666666 },
         three: { title: '用户总数', fromData: 0, toData: 233333 }
-      },
-      userRankList: {
-        labels: [],
-        data: []
       }
     }
   },
@@ -70,14 +65,20 @@ export default {
       loop: true
     })
     let indexData = (await http.get('/index/info')).data
+    let userRankList = { labels: [], data: [] }
+    let goodsRankList = { labels: [], data: [] }
     indexData.userRank.forEach(function (ele) {
-      this.userRankList.labels.push(ele.name)
-      this.userRankList.data.push(ele.buyNum)
+      userRankList.labels.push(ele.name)
+      userRankList.data.push(ele.buyNum)
+    }, this)
+    indexData.goodList.forEach(function (ele) {
+      goodsRankList.labels.push(ele.name + ' ' + ele.memory + 'G ' + ele.color)
+      goodsRankList.data.push(ele.salesNum)
     }, this)
     this.number.one.toData = indexData.orderCount
     this.number.two.toData = indexData.orderSum
     this.number.three.toData = indexData.userCount
-    this.initCanvas()
+    this.initCanvas(userRankList, goodsRankList)
     this.animateNumber()
   },
   filters: {
@@ -92,19 +93,15 @@ export default {
     }
   },
   methods: {
-    async initCanvas () {
+    async initCanvas (userRankList, goodsRankList) {
       // 剁手排行柱状图
       let chartBuyNumId = document.getElementById('chartBuyNum')
-      chartBuyNumOption.data.labels = this.userRankList.labels
-      chartSalesNumOption.data.datasets[0].data = this.userRankList.data
+      chartBuyNumOption.data.labels = userRankList.labels
+      chartSalesNumOption.data.datasets[0].data = userRankList.data
       this.chartBuyNum = new Chart(chartBuyNumId, chartBuyNumOption)
 
-      // 销量份额饼图
-      let goodsList = (await http.get('/goods/list')).data
-      goodsList = goodsList.slice(0, 5)
-
-      chartSalesNumOption.data.labels = goodsList.map(el => el.name + ' ' + el.memory + 'G ' + el.color)
-      chartSalesNumOption.data.datasets[0].data = goodsList.map(el => el.salesNum)
+      chartSalesNumOption.data.labels = goodsRankList.labels
+      chartSalesNumOption.data.datasets[0].data = goodsRankList.data
 
       let chartSalesNumId = document.getElementById('chartSalesNum')
       this.chartSalesNum = new Chart(chartSalesNumId, chartSalesNumOption)
