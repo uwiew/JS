@@ -2,16 +2,22 @@
   <section class="user-card card admin-card">
     <el-tabs v-model="activeName">
       <el-tab-pane label="商品" name="info" v-if="goodsList">
-        <div class="create-goods">
-          <el-input v-model="newGoods.name" placeholder="商品名"></el-input>
-          <el-input v-model="newGoods.color" placeholder="颜色"></el-input>
-          <el-input v-model="newGoods.memory" placeholder="内存(G)"></el-input>
-          <el-input v-model="newGoods.agent" placeholder="代理商"></el-input>
-          <el-input v-model="newGoods.price" placeholder="价格"></el-input>
-          <el-input v-model="newGoods.pic" placeholder="图片"></el-input>
-          <el-input type="textarea" :rows="2" placeholder="描述性图片，多个图片请用 ; 隔开" v-model="detailPicList"> </el-input>
-          <el-button @click.native="createGoods" type="primary">添加商品</el-button>
-        </div>
+
+        <el-collapse>
+          <el-collapse-item title="新增商品" name="1">
+            <div class="create-goods">
+              <el-input v-model="newGoods.name" placeholder="商品名"></el-input>
+              <el-input v-model="newGoods.color" placeholder="颜色"></el-input>
+              <el-input v-model="newGoods.memory" placeholder="内存(G)"></el-input>
+              <el-input v-model="newGoods.agent" placeholder="代理商"></el-input>
+              <el-input v-model="newGoods.price" placeholder="价格"></el-input>
+              <el-input v-model="newGoods.pic" placeholder="图片"></el-input>
+              <el-input type="textarea" :rows="2" placeholder="描述性图片，多个图片请用 ; 隔开" v-model="detailPicList"> </el-input>
+              <el-button @click.native="createGoods" type="primary">添加商品</el-button>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
+
         <el-table :data="goodsList" border style="width: 100%" :row-class-name="checkDisable">
           <el-table-column prop="name" label="商品名" width="150">
             <template scope="scope">

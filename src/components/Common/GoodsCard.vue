@@ -1,5 +1,5 @@
 <template>
-  <figure class="goods-card" @click="disable || $router.push('/goods/' + id)" :style="{ border: disable ? '1px solid #d85a63' : 'none', cursor: disable ? 'not-allowed' : 'pointer' }">
+  <figure class="goods-card cell" @click="disable || $router.push('/goods/' + id)" :style="{ border: disable ? '1px solid #d85a63' : 'none', cursor: disable ? 'not-allowed' : 'pointer' }">
     <img :src="pic" :alt="name">
     <figcaption>
       <h3>{{ name }}</h3>

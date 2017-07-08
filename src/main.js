@@ -5,7 +5,7 @@ import store from './store'
 
 import 'normalize.css/normalize.css'
 
-import { Button, Carousel, CarouselItem, Form, FormItem, Input, Loading, InputNumber, Tabs, TabPane, Message, Step, Steps, Table, TableColumn, Dialog, Select, Option } from 'element-ui'
+import { Button, Carousel, CarouselItem, Form, FormItem, Input, Loading, InputNumber, Tabs, TabPane, Message, Step, Steps, Table, TableColumn, Dialog, Select, Option, Collapse, CollapseItem } from 'element-ui'
 Vue.use(Button)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
@@ -23,6 +23,8 @@ Vue.use(Steps)
 Vue.use(Dialog)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Collapse)
+Vue.use(CollapseItem)
 
 Vue.prototype.$message = Message
 

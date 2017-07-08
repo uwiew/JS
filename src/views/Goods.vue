@@ -1,6 +1,5 @@
 <template>
   <section class="goods">
-    <!--<h2>商品列表</h2>-->
     <div class="goods-list">
       <goods-card
         v-for="(item, idx) in goodsList"
@@ -12,7 +11,7 @@
         :agent="item.agent"
         :memory="item.memory"
         :disable="item.disable"
-        :key="idx">
+        :key="item._id">
       </goods-card>
     </div>
     <div class="loading ball-pulse-sync" v-show="isLoading">

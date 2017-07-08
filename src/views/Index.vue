@@ -34,16 +34,19 @@
       </h2>
     </div>
 
+    <js-footer></js-footer>
   </section>
 </template>
 
 <script>
 import http from 'axios'
 import Chart from 'chart.js'
-import chartBuyNumOption from '../components/Index/chartBuyNum.js'
-import chartSalesNumOption from '../components/Index/chartSalesNum.js'
 import TWEEN from 'tween.js'
 import ityped from 'ityped'
+
+import chartBuyNumOption from '../components/Index/chartBuyNum.js'
+import chartSalesNumOption from '../components/Index/chartSalesNum.js'
+import JsFooter from '../components/Common/Footer.vue'
 
 export default {
   data () {
@@ -114,6 +117,9 @@ export default {
         .start()
       animate()
     }
+  },
+  components: {
+    JsFooter
   }
 }
 </script>
