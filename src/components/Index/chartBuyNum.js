@@ -1,10 +1,10 @@
 export default {
   type: 'bar',
   data: {
-    labels: ['abc', 'cba', 'aaa', 'bac', 'bab'],
+    labels: [],
     datasets: [{
       label: ':)',
-      data: [2314541, 1389212, 918182, 691111, 359222],
+      data: [],
       backgroundColor: [
         'rgba(255,99,132,1)',
         'rgba(54, 162, 235, 1)',
