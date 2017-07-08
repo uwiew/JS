@@ -1,11 +1,6 @@
 <template>
   <section class="user-card card">
     <el-tabs v-model="activeName">
-      <el-tab-pane label="资本资料" name="info">
-        <p>余额：￥{{ money }}</p>
-        <p>手机号码：{{ telephoneNum }}</p>
-        <p>地址：{{ address }}</p>
-      </el-tab-pane>
       <el-tab-pane label="订单查询" name="order">
         <p>
           <el-table :data="orderList" border style="width: 100%">
@@ -33,6 +28,12 @@
           </el-table>
         </p>
       </el-tab-pane>
+
+      <el-tab-pane label="资本资料" name="info">
+        <p>余额：￥{{ money }}</p>
+        <p>手机号码：{{ telephoneNum }}</p>
+        <p>地址：{{ address }}</p>
+      </el-tab-pane>
     </el-tabs>
   </section>
 </template>
@@ -43,7 +44,7 @@ import http from 'axios'
 export default {
   data () {
     return {
-      activeName: 'info',
+      activeName: 'order',
       dataOrderList: []
     }
   },
@@ -70,6 +71,7 @@ export default {
       let list = this.dataOrderList[index]
       await http.get(`/userPrivate/confirm?orderId=${list._id}`)
       list.status = 2
+      this.$message('已确认订单')
     }
   }
 }
