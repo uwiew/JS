@@ -1,10 +1,8 @@
 <template>
   <section class="index">
     <el-carousel class="carousel">
-      <el-carousel-item v-for="(item, idx) in bannerPic" :key="idx" :style="{background: `#333 url(${ item }) center center no-repeat`, backgroundSize: 'cover'}">
-      </el-carousel-item>
+      <el-carousel-item v-for="(item, idx) in bannerPic" :key="idx" :style="{background: `#333 url(${ item }) center center no-repeat`, backgroundSize: 'cover'}"> </el-carousel-item>
     </el-carousel>
-
     <div class="number-info info">
       <div class="number-list list">
         <div class="number-item" v-for="(item, idx) in number" :key="idx">
@@ -13,7 +11,6 @@
         </div>
       </div>
     </div>
-
     <div class="sales-info info">
       <!--<h2>大数统计</h2>-->
       <div class="sales-list list">
@@ -27,13 +24,11 @@
         </div>
       </div>
     </div>
-
     <div class="type-info info">
       <h2>
         <span class="ityped"></span>
       </h2>
     </div>
-
   </section>
 </template>
 
@@ -58,16 +53,28 @@ export default {
         one: { title: '订单总数', fromData: 0, toData: 998 },
         two: { title: '累计金额', fromData: 0, toData: 6666666 },
         three: { title: '用户总数', fromData: 0, toData: 233333 }
+      },
+      userRankList: {
+        labels: [],
+        data: []
       }
     }
   },
-  mounted () {
-    this.animateNumber()
-    this.initCanvas()
+  async mounted () {
     ityped.init(document.querySelector('.ityped'), {
       strings: ['注册就送 ￥5000', '踏踏实实做人，认认真真搞机', '今天大家的机儿都放假了吗？', ':)'],
       loop: true
     })
+    let indexData = (await http.get('/index/info')).data
+    indexData.userRank.forEach(function (ele) {
+      this.userRankList.labels.push(ele.name)
+      this.userRankList.data.push(ele.buyNum)
+    }, this)
+    this.number.one.toData = indexData.orderCount
+    this.number.two.toData = indexData.orderSum
+    this.number.three.toData = indexData.userCount
+    this.initCanvas()
+    this.animateNumber()
   },
   filters: {
     beautifyNumber (value) {
@@ -84,11 +91,13 @@ export default {
     async initCanvas () {
       // 剁手排行柱状图
       let chartBuyNumId = document.getElementById('chartBuyNum')
+      chartBuyNumOption.data.labels = this.userRankList.labels
+      chartSalesNumOption.data.datasets[0].data = this.userRankList.data
       this.chartBuyNum = new Chart(chartBuyNumId, chartBuyNumOption)
 
       // 销量份额饼图
       let goodsList = (await http.get('/goods/list')).data
-      goodsList = goodsList.sort((a, b) => b.salesNum - a.salesNum).slice(0, 5)
+      goodsList = goodsList.slice(0, 5)
 
       chartSalesNumOption.data.labels = goodsList.map(el => el.name + ' ' + el.memory + 'G ' + el.color)
       chartSalesNumOption.data.datasets[0].data = goodsList.map(el => el.salesNum)
@@ -99,7 +108,7 @@ export default {
     animateNumber () {
       let vm = this
       function animate (time) {
-        requestAnimationFrame(animate)
+        window.requestAnimationFrame(animate)
         TWEEN.update(time)
       }
       new TWEEN.Tween({ one: 0, two: 0, three: 0 })

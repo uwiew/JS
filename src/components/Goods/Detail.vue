@@ -94,6 +94,8 @@ $mobile-width = 767px
             border-radius 4px
 
   .pic-list
+    margin-left: auto;
+    margin-right: auto;
     max-width 1200px
     img
       margin 20px auto
