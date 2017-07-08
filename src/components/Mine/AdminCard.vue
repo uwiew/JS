@@ -1,43 +1,7 @@
 <template>
   <section class="user-card card admin-card">
     <el-tabs v-model="activeName">
-      <el-tab-pane label="商品" name="info" v-if="goodsList">
-
-        <el-collapse>
-          <el-collapse-item title="新增商品" name="1">
-            <div class="create-goods">
-              <el-input v-model="newGoods.name" placeholder="商品名"></el-input>
-              <el-input v-model="newGoods.color" placeholder="颜色"></el-input>
-              <el-input v-model="newGoods.memory" placeholder="内存(G)"></el-input>
-              <el-input v-model="newGoods.agent" placeholder="代理商"></el-input>
-              <el-input v-model="newGoods.price" placeholder="价格"></el-input>
-              <el-input v-model="newGoods.pic" placeholder="图片"></el-input>
-              <el-input type="textarea" :rows="2" placeholder="描述性图片，多个图片请用 ; 隔开" v-model="detailPicList"> </el-input>
-              <el-button @click.native="createGoods" type="primary">添加商品</el-button>
-            </div>
-          </el-collapse-item>
-        </el-collapse>
-
-        <el-table :data="goodsList" border style="width: 100%" :row-class-name="checkDisable">
-          <el-table-column prop="name" label="商品名" width="150">
-            <template scope="scope">
-              <router-link :to="`/goods/${scope.row._id}`"> {{scope.row.name}} </router-link>
-            </template>
-          </el-table-column>
-          <el-table-column prop="color" label="颜色" width="120"></el-table-column>
-          <el-table-column prop="memory" label="内存(G)" width="100"></el-table-column>
-          <el-table-column prop="agent" label="代理商" width="300"></el-table-column>
-          <el-table-column prop="salesNum" label="销量" width="100"></el-table-column>
-          <el-table-column prop="price" label="价格" width="100"></el-table-column>
-          <el-table-column fixed="right" label="操作" width="100">
-            <template scope="scope">
-              <el-button :disabled="!scope.row.disable" @click="onsale(scope.$index)" type="text" size="small">上架</el-button>
-              <el-button :disabled="scope.row.disable" @click="offsale(scope.$index)" type="text" size="small">下架</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-tab-pane>
-      <el-tab-pane label="订单" name="address">
+      <el-tab-pane label="订单" name="order">
         <p>
           <el-table :data="orderList" border style="width: 100%">
             <el-table-column prop="goods.name" label="商品名字" width="200">
@@ -88,6 +52,42 @@
           </div>
         </el-dialog>
       </el-tab-pane>
+
+      <el-tab-pane label="商品" name="info" v-if="goodsList">
+        <el-collapse>
+          <el-collapse-item title="新增商品" name="1">
+            <div class="create-goods">
+              <el-input v-model="newGoods.name" placeholder="商品名"></el-input>
+              <el-input v-model="newGoods.color" placeholder="颜色"></el-input>
+              <el-input v-model="newGoods.memory" placeholder="内存(G)"></el-input>
+              <el-input v-model="newGoods.agent" placeholder="代理商"></el-input>
+              <el-input v-model="newGoods.price" placeholder="价格"></el-input>
+              <el-input v-model="newGoods.pic" placeholder="图片"></el-input>
+              <el-input type="textarea" :rows="2" placeholder="描述性图片，多个图片请用 ; 隔开" v-model="detailPicList"> </el-input>
+              <el-button @click.native="createGoods" type="primary">添加商品</el-button>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
+
+        <el-table :data="goodsList" border style="width: 100%" :row-class-name="checkDisable">
+          <el-table-column prop="name" label="商品名" width="150">
+            <template scope="scope">
+              <router-link :to="`/goods/${scope.row._id}`"> {{scope.row.name}} </router-link>
+            </template>
+          </el-table-column>
+          <el-table-column prop="color" label="颜色" width="120"></el-table-column>
+          <el-table-column prop="memory" label="内存(G)" width="100"></el-table-column>
+          <el-table-column prop="agent" label="代理商" width="300"></el-table-column>
+          <el-table-column prop="salesNum" label="销量" width="100"></el-table-column>
+          <el-table-column prop="price" label="价格" width="100"></el-table-column>
+          <el-table-column fixed="right" label="操作" width="100">
+            <template scope="scope">
+              <el-button :disabled="!scope.row.disable" @click="onsale(scope.$index)" type="text" size="small">上架</el-button>
+              <el-button :disabled="scope.row.disable" @click="offsale(scope.$index)" type="text" size="small">下架</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
     </el-tabs>
   </section>
 </template>
@@ -99,7 +99,7 @@ import http from 'axios'
 export default {
   data () {
     return {
-      activeName: 'info',
+      activeName: 'order',
       goodsList: [],
       newGoods: {
         detailPicList: []
@@ -194,6 +194,7 @@ export default {
         expressId: 0
       }
       this.dialogFormVisible = false
+      this.$message('已发货')
     },
     beforeShip (scope) {
       this.expressForm.expressId = Date.now()
