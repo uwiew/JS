@@ -2,16 +2,22 @@
   <section class="user-card card admin-card">
     <el-tabs v-model="activeName">
       <el-tab-pane label="商品" name="info" v-if="goodsList">
-        <div class="create-goods">
-          <el-input v-model="newGoods.name" placeholder="商品名"></el-input>
-          <el-input v-model="newGoods.color" placeholder="颜色"></el-input>
-          <el-input v-model="newGoods.memory" placeholder="内存(G)"></el-input>
-          <el-input v-model="newGoods.agent" placeholder="代理商"></el-input>
-          <el-input v-model="newGoods.price" placeholder="价格"></el-input>
-          <el-input v-model="newGoods.pic" placeholder="图片"></el-input>
-          <el-input type="textarea" :rows="2" placeholder="描述性图片，多个图片请用 ; 隔开" v-model="detailPicList"> </el-input>
-          <el-button @click.native="createGoods" type="primary">添加商品</el-button>
-        </div>
+
+        <el-collapse>
+          <el-collapse-item title="新增商品" name="1">
+            <div class="create-goods">
+              <el-input v-model="newGoods.name" placeholder="商品名"></el-input>
+              <el-input v-model="newGoods.color" placeholder="颜色"></el-input>
+              <el-input v-model="newGoods.memory" placeholder="内存(G)"></el-input>
+              <el-input v-model="newGoods.agent" placeholder="代理商"></el-input>
+              <el-input v-model="newGoods.price" placeholder="价格"></el-input>
+              <el-input v-model="newGoods.pic" placeholder="图片"></el-input>
+              <el-input type="textarea" :rows="2" placeholder="描述性图片，多个图片请用 ; 隔开" v-model="detailPicList"> </el-input>
+              <el-button @click.native="createGoods" type="primary">添加商品</el-button>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
+
         <el-table :data="goodsList" border style="width: 100%" :row-class-name="checkDisable">
           <el-table-column prop="name" label="商品名" width="150">
             <template scope="scope">
@@ -52,19 +58,27 @@
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="100">
               <template scope="scope">
-                <el-button @click.native="dialogFormVisible = true,expressForm.id = scope.row._id,expressFormIndex = scope.$index" v-if="scope.row.status === 0" style="color: #d85a63; font-size: 12px;"> 发货 </el-button>
+                <el-button @click.native="beforeShip(scope)" v-if="scope.row.status === 0" style="color: #d85a63; font-size: 12px;"> 发货 </el-button>
                 <p v-if="scope.row.status === 2" style="color: #4688f1; font-size: 12px;"> 已确认收货 </p>
                 <p v-if="scope.row.status === 1" style="color: #41b783; font-size: 12px;"> 已发货 </p>
               </template>
             </el-table-column>
           </el-table>
         </p>
-        <el-dialog title="收货地址" size="tiny" :visible.sync="dialogFormVisible">
+        <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
           <el-form :model="expressForm">
-            <el-form-item label="快递" label-width="100px">
-              <el-input v-model="expressForm.express" auto-complete="off"></el-input>
+            <el-form-item label="快递" label-width="40px">
+              <!--<el-input v-model="expressForm.express" auto-complete="off"></el-input>-->
+              <el-select v-model="expressForm.express">
+              <el-option
+                v-for="item in expressOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
             </el-form-item>
-            <el-form-item label="快递单号" label-width="100px">
+            <el-form-item label="单号" label-width="40px">
               <el-input v-model="expressForm.expressId" auto-complete="off"></el-input>
             </el-form-item>
           </el-form>
@@ -97,7 +111,17 @@ export default {
         id: 0,
         express: '',
         expressId: ''
-      }
+      },
+      expressOptions: [
+        { value: '不通', label: '不通' },
+        { value: '援通', label: '援通' },
+        { value: '噗通', label: '噗通' },
+        { value: '马通', label: '马通' },
+        { value: '吮峰', label: '吮峰' },
+        { value: '孕达', label: '孕达' },
+        { value: '上通', label: '上通' },
+        { value: '下通', label: '下通' }
+      ]
     }
   },
   computed: {
@@ -170,6 +194,12 @@ export default {
         expressId: 0
       }
       this.dialogFormVisible = false
+    },
+    beforeShip (scope) {
+      this.expressForm.expressId = Date.now()
+      this.dialogFormVisible = true
+      this.expressForm.id = scope.row._id
+      this.expressFormIndex = scope.$index
     }
   },
   async mounted () {

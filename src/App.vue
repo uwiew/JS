@@ -32,10 +32,12 @@ $default-color = #4688f1
 body
   background #f7f8fa
 ul
+  padding 0
   list-style-type: none
 a
   text-decoration: none
-  &:hover, &:visited
+  &:link, &:visited
+  &:hover, &:active
     color $default-color
 ::selection
   background $default-color
@@ -108,5 +110,5 @@ a
     // transform: translateX(0)
   .fade-enter, .fade-leave-active
     opacity: 0
-    transform: translateX(50px)
+    transform: translateX(20px)
 </style>
