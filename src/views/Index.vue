@@ -66,7 +66,7 @@ export default {
   },
   async mounted () {
     ityped.init(document.querySelector('.ityped'), {
-      strings: ['注册就送 ￥5000', '踏踏实实做人，认认真真搞机', '今天大家的机儿都放假了吗？', ':)'],
+      strings: ['注册就送 ￥5000', '踏踏实实做人，认认真真搞机', '今天大家的机儿都放假了吗？', '湘大首家线上手机旗舰店上线啦', ':)'],
       loop: true
     })
     let indexData = (await http.get('/index/info')).data

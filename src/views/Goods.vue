@@ -1,5 +1,11 @@
 <template>
   <section class="goods">
+    <!--<el-button-group class="button-group">
+      <el-button @click="goodsSortBy('salesNum')" :disabled="sortStatus === 'salesNum'">销量</el-button>
+      <el-button @click="goodsSortBy('_id')" :disabled="sortStatus === '_id'">新品</el-button>
+      <el-button @click="goodsSortBy('price')" :disabled="sortStatus === 'price'">价格</el-button>
+    </el-button-group>-->
+
     <div class="goods-list">
       <goods-card
         v-for="(item, idx) in goodsList"
@@ -11,9 +17,10 @@
         :agent="item.agent"
         :memory="item.memory"
         :disable="item.disable"
-        :key="item._id">
+        :key="item.idx">
       </goods-card>
     </div>
+
     <div class="loading ball-pulse-sync" v-show="isLoading">
       <div id="load1"></div>
       <div id="load2"></div>
@@ -28,6 +35,11 @@ import 'loaders.css/loaders.min.css'
 import { mapState } from 'vuex'
 
 export default {
+  data () {
+    return {
+      sortStatus: 'salesNum'
+    }
+  },
   computed: {
     ...mapState({
       goodsList: state => state.goodsList.goodsList,
@@ -44,6 +56,11 @@ export default {
         return
       }
       await this.$store.dispatch('addGoods')
+    },
+    async goodsSortBy (state) {
+      this.sortStatus = state
+      this.goodsList.sort((a, b) => b[state] - a[state])
+      await this.moreGoods()
     }
   },
   async mounted () {
@@ -67,8 +84,12 @@ $common-padding = 100px
   h2
     padding-bottom 12px
     border-bottom 3px dashed #eaeefb
+  .button-group
+    margin-left 20px
+    @media (max-width 1400px)
+      margin-left 0
   .goods-list
-    padding-top 5px
+    // padding-top 30px
     overflow hidden
     box-sizing border-box
     display flex
@@ -77,6 +98,8 @@ $common-padding = 100px
     max-width 1200px
     margin 0 auto
   @media (max-width $mobile-width + 200px)
+    .button-group
+      margin-left 0
     .goods-list
       width 100%
     .goods-card
