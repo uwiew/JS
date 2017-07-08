@@ -97,7 +97,7 @@ export default {
       // 剁手排行柱状图
       let chartBuyNumId = document.getElementById('chartBuyNum')
       chartBuyNumOption.data.labels = userRankList.labels
-      chartSalesNumOption.data.datasets[0].data = userRankList.data
+      chartBuyNumOption.data.datasets[0].data = userRankList.data
       this.chartBuyNum = new Chart(chartBuyNumId, chartBuyNumOption)
 
       chartSalesNumOption.data.labels = goodsRankList.labels
