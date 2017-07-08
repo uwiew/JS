@@ -32,7 +32,12 @@ module.exports = {
       '/user/**': 'http://127.0.0.1:3000/',
       '/userPrivate/**': 'http://127.0.0.1:3000/',
       '/order/**': 'http://127.0.0.1:3000/',
-      '/admin/**': 'http://127.0.0.1:3000/'
+      '/admin/**': 'http://127.0.0.1:3000/',
+      '/socket.io/**': {
+        target: 'http://127.0.0.1:3000/',
+        changeOrigin: true,
+        ws: true
+      }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
