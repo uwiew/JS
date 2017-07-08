@@ -35,7 +35,8 @@ ul
   list-style-type: none
 a
   text-decoration: none
-  &:hover, &:visited
+  &:link, &:visited
+  &:hover, &:active
     color $default-color
 ::selection
   background $default-color

@@ -59,7 +59,7 @@
             </el-table-column>
           </el-table>
         </p>
-        <el-dialog title="收货地址" size="tiny" :visible.sync="dialogFormVisible">
+        <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
           <el-form :model="expressForm">
             <el-form-item label="快递" label-width="100px">
               <el-input v-model="expressForm.express" auto-complete="off"></el-input>

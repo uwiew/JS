@@ -1,6 +1,5 @@
 <template>
   <div class="order">
-    <!--<h2>提交订单</h2>-->
     <div class="card">
       <div class="order-container" v-if="goods">
         <div class="order-item order-item-1">
@@ -45,9 +44,9 @@
         <div class="check-money">
           <b>总计 ￥{{ price }}</b>
           <p v-show="moneyIsEnough">
-            <i class="el-icon-check"></i>&nbsp; 您的账户余额为 {{userInfo.money}} 元，金额充足可以支付</p>
+            <i class="el-icon-check"></i>&nbsp; 您的账户余额为 <b style="color: #4688f1;">{{userInfo.money}}</b> 元，金额充足可以支付</p>
           <p v-show="!moneyIsEnough">
-            <i class="el-icon-close"></i>&nbsp; 您的账户余额为 {{userInfo.money}} 元，金额不足以支付</p>
+            <i class="el-icon-close"></i>&nbsp; 您的账户余额为 <b style="color: #d85a63;">{{userInfo.money}}</b> 元，金额不足以支付</p>
         </div>
         <el-button @click.native="dialogVisible = true" type="primary" :disabled="!moneyIsEnough" size="large">提交订单</el-button>
       </div>
