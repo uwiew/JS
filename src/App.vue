@@ -12,12 +12,16 @@
       <router-view class="viewport"></router-view>
     </transition>
 
-    <chat></chat>
+    <chat-btn></chat-btn>
+    <transition name="fade-chat" mode="out-in">
+      <chat></chat>
+    </transition>
   </div>
 </template>
 
 <script>
 import Chat from './components/Common/Chat'
+import ChatBtn from './components/Common/ChatBtn'
 
 export default {
   name: 'app',
@@ -25,7 +29,8 @@ export default {
     this.$store.dispatch('initMine')
   },
   components: {
-    Chat
+    Chat,
+    ChatBtn
   }
 }
 </script>
@@ -119,4 +124,10 @@ a
   .fade-enter, .fade-leave-active
     opacity: 0
     transform: translateX(20px)
+
+  .fade-chat-enter-active, .fade-chat-leave-active
+    transition: all .15s ease-in-out
+  .fade-chat-enter, .fade-chat-leave-active
+    opacity: 0
+    transform: translateY(20px)
 </style>
