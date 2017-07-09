@@ -15,26 +15,39 @@
         </ul>
       </main>
       <footer>
-        <el-input></el-input>
-        <el-button>SEND</el-button>
+        <el-input v-model="mess"></el-input>
+        <el-button @click.native="send">SEND</el-button>
       </footer>
     </div>
   </section>
 </template>
 
 <script>
+import io from 'socket.io-client'
+const socket = io()
+
 export default {
+  data () {
+    return {
+      mess: ''
+    }
+  },
   computed: {
     isShow () {
       return this.$store.state.chat.isShow
     }
   },
   mounted () {
-    console.log(this.$store.state.chat.isShow)
+    socket.on('chat', (data) => {
+      console.log(data)
+    })
   },
   methods: {
     toggleChat (isShow) {
       this.$store.dispatch('popChat', { isShow })
+    },
+    send () {
+      socket.emit('chatWithAdmin', {from: socket.id, mess: this.mess})
     }
   }
 }

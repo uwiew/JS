@@ -209,6 +209,10 @@ export default {
       this.$message('您有新的订单请及时处理塞')
       this.dataOrderList.unshift(data)
     })
+    socket.on('chat', (data) => {
+      console.log(data)
+      socket.emit('chatWithUser', {from: data.from, hello: 'world'})
+    })
   }
 }
 </script>
