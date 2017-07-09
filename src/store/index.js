@@ -5,6 +5,7 @@ import goodsList from './goodList'
 import teamList from './teamList'
 import mine from './mine'
 import chat from './chat'
+import adminChat from './adminChat'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     goodsList,
     teamList,
     mine,
-    chat
+    chat,
+    adminChat
   }
 })

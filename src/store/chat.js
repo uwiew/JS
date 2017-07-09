@@ -1,16 +1,18 @@
-// import http from 'axios'
-
-// let chat = http.create({
-//   withCredentials: true
-// })
 
 export default {
   state: {
-    isShow: false
+    isShow: false,
+    chatList: []
   },
   mutations: {
     popChat (state, payload) {
       state.isShow = payload
+    },
+    addChat (state, payload) {
+      state.chatList.push(payload)
+    },
+    setChatList (state, payload) {
+      state.chatList = payload
     }
   },
   actions: {

@@ -1,11 +1,16 @@
 <template>
-  <svg class="icon" aria-hidden="true" @click="$store.dispatch('popChat', { isShow: true })">
+  <svg class="icon" aria-hidden="true" @click="showChat">
     <use xlink:href="#icon-huodongzhifeiji"></use>
   </svg>
 </template>
 
 <script>
 export default {
+  methods: {
+    showChat () {
+      this.$store.state.mine.mine ? this.$store.dispatch('popChat', { isShow: true }) : this.$router.replace('/login')
+    }
+  }
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="chat" v-if="isShow" @click.self="toggleChat(false)">
+  <section class="chat" v-if="isShow" @click.self="$store.dispatch('popChat', { isShow: false })">
     <div class="chat-card">
       <header>
         <h3>HIS NAME</h3>
@@ -9,13 +9,14 @@
       <main>
         <!-- 聊天界面 -->
         <ul>
-          <li>HI</li>
-          <li>HELLO</li>
-          <li>FUCKU</li>
+          <li v-for="(item,index) in chatList" :key="index">
+            <h5>{{item.name}} :</h5>
+            <p> {{item.message}}</p>
+          </li>
         </ul>
       </main>
       <footer>
-        <el-input v-model="mess"></el-input>
+        <el-input v-model="message"></el-input>
         <el-button @click.native="send">SEND</el-button>
       </footer>
     </div>
@@ -24,30 +25,61 @@
 
 <script>
 import io from 'socket.io-client'
-const socket = io()
+import { mapState } from 'vuex'
 
 export default {
   data () {
     return {
-      mess: ''
+      message: '',
+      socket: null
     }
   },
   computed: {
-    isShow () {
-      return this.$store.state.chat.isShow
-    }
-  },
-  mounted () {
-    socket.on('chat', (data) => {
-      console.log(data)
+    ...mapState({
+      isShow: state => state.chat.isShow,
+      chatList: state => state.chat.chatList,
+      isLogin: state => !!state.mine.mine,
+      isAdmin: state => state.mine.mine ? state.mine.mine.isAdmin : false
     })
   },
+  mounted () { },
   methods: {
+    createSocket () {
+      if (!this.isAdmin && this.isLogin) {
+        this.socket = io()
+        this.socket.on('chat', (data) => {
+          this.$store.commit('addChat', data)
+        })
+      }
+    },
     toggleChat (isShow) {
-      this.$store.dispatch('popChat', { isShow })
+      this.isLogin ? this.$store.dispatch('popChat', { isShow }) : this.$router.replace('/login')
     },
     send () {
-      socket.emit('chatWithAdmin', {from: socket.id, mess: this.mess})
+      // admin用户的处理
+      if (this.isAdmin) {
+        this.$store.commit('setNewChat', {
+          name: 'admin', message: this.message, from: this.chatList[0].from
+        })
+        this.message = ''
+        return
+      }
+      // 普通用户的处理
+      let callback = () => {
+        let name = this.$store.state.mine.mine.name
+        let data = { name: name, message: this.message, from: this.socket.id }
+        this.$store.commit('addChat', data)
+        this.socket.emit('chatWithAdmin', data)
+        this.message = ''
+      }
+      if (!this.socket) {
+        this.createSocket()
+        this.socket.on('connect', () => {
+          callback()
+        })
+        return
+      }
+      callback()
     }
   }
 }

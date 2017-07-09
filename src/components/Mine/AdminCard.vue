@@ -81,22 +81,21 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-
       <el-tab-pane label="聊骚" name="chat">
         <ul class="chat-list" @click="popChat($event)">
-          <li v-for="item in chatData" :key="item.name">
-            <h3>{{ item.name }}</h3>
-            <el-badge :value="item.message.length" :max="99"></el-badge>
+          <li v-for="(value,key) in chatList" :key="key" :f-listKey="key">
+            <h3>{{ value[0].name }}</h3>
+            <el-badge :value="value.length" :max="99"></el-badge>
           </li>
         </ul>
       </el-tab-pane>
     </el-tabs>
   </section>
 </template>
-
 <script>
 import http from 'axios'
 import io from 'socket.io-client'
+import { mapState } from 'vuex'
 
 export default {
   data () {
@@ -124,7 +123,8 @@ export default {
         { value: '上通', label: '上通' },
         { value: '下通', label: '下通' }
       ],
-      chatData: require('../../store/mock_chat')
+      chatData: require('../../store/mock_chat'),
+      socket: null
     }
   },
   computed: {
@@ -139,6 +139,9 @@ export default {
         }) : ''
       }
     },
+    ...mapState({
+      chatList: state => state.adminChat.chatList
+    }),
     orderList () {
       return this.dataOrderList.map(function (ele) {
         let { name, color, agent } = ele.goods
@@ -146,6 +149,12 @@ export default {
         ele.price = ele.cost / ele.num
         return ele
       })
+    }
+  },
+  watch: {
+    '$store.state.adminChat.newChat': function (newValue) {
+      this.socket.emit('chatWithUser', newValue)
+      this.$store.commit('addAdminChat', newValue)
     }
   },
   async created () {
@@ -206,21 +215,24 @@ export default {
       this.expressFormIndex = scope.$index
     },
     popChat (e) {
-      console.log(e.target)
+      let key = e.target.getAttribute('f-listKey')
+      this.$store.commit('setChatList', this.chatList[key])
+      this.$store.commit('popChat', true)
     }
   },
   async mounted () {
-    const socket = io()
-    socket.on('connect', () => {
-      socket.emit('admin')
+    this.socket = io()
+    this.socket.on('connect', () => {
+      this.socket.emit('admin')
     })
-    socket.on('orderCreate', (data) => {
+    this.socket.on('orderCreate', (data) => {
       this.$message('您有新的订单请及时处理塞')
       this.dataOrderList.unshift(data)
     })
-    socket.on('chat', (data) => {
-      console.log(data)
-      socket.emit('chatWithUser', {from: data.from, hello: 'world'})
+    this.socket.on('chat', (data) => {
+      this.$store.commit('addAdminChat', data)
+      // console.log(data)
+      // socket.emit('chatWithUser', {from: data.from, hello: 'world'})
     })
   }
 }
