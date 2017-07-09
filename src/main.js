@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 
 import 'normalize.css/normalize.css'
+import './public/js/iconfont'
 
 import { Button, Carousel, CarouselItem, Form, FormItem, Input, Loading, InputNumber, Tabs, TabPane, Message, Step, Steps, Table, TableColumn, Dialog, Select, Option, Collapse, CollapseItem, ButtonGroup } from 'element-ui'
 Vue.use(Button)

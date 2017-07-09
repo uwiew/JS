@@ -41,6 +41,8 @@ export default {
 </script>
 
 <style lang="stylus">
+$mobile-width 767px
+
 .chat
   width 100vw
   height 100vh
@@ -55,8 +57,7 @@ export default {
     min-width 300px
     max-width 600px
     width 80%
-    height 600px
-    // margin 0 auto
+    height 80vh
     border-radius 4px
     background #fff
     box-shadow 1px 2px 5px rgba(0,0,0,0.1)
@@ -68,6 +69,8 @@ export default {
     margin 30px auto
     transform translate(-50%, -50%)
     z-index 999
+    @media (max-width $mobile-width)
+      width 96%
     header
       display flex
       align-items center
