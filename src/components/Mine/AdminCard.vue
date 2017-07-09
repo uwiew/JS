@@ -34,13 +34,8 @@
             <el-form-item label="快递" label-width="40px">
               <!--<el-input v-model="expressForm.express" auto-complete="off"></el-input>-->
               <el-select v-model="expressForm.express">
-              <el-option
-                v-for="item in expressOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
+                <el-option v-for="item in expressOptions" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+              </el-select>
             </el-form-item>
             <el-form-item label="单号" label-width="40px">
               <el-input v-model="expressForm.expressId" auto-complete="off"></el-input>
@@ -52,7 +47,6 @@
           </div>
         </el-dialog>
       </el-tab-pane>
-
       <el-tab-pane label="商品" name="info" v-if="goodsList">
         <el-collapse>
           <el-collapse-item title="新增商品" name="1">
@@ -68,7 +62,6 @@
             </div>
           </el-collapse-item>
         </el-collapse>
-
         <el-table :data="goodsList" border style="width: 100%" :row-class-name="checkDisable">
           <el-table-column prop="name" label="商品名" width="150">
             <template scope="scope">
@@ -94,7 +87,7 @@
 
 <script>
 import http from 'axios'
-// import io from 'socket.io-client'
+import io from 'socket.io-client'
 
 export default {
   data () {
@@ -204,14 +197,14 @@ export default {
     }
   },
   async mounted () {
-    // const socket = io('/order')
-    // socket.send('hello world')
-    // socket.on('connect', () => {
-    //   console.log(socket.id)
-    // })
-    // socket.on('message', (data) => {
-    //   console.log(data)
-    // })
+    const socket = io()
+    socket.on('connect', () => {
+      socket.emit('admin')
+    })
+    socket.on('orderCreate', (data) => {
+      this.$message('您有新的订单请及时处理塞')
+      this.dataOrderList.unshift(data)
+    })
   }
 }
 </script>
