@@ -6,7 +6,7 @@
 
 export default {
   state: {
-    isShow: true
+    isShow: false
   },
   mutations: {
     popChat (state, payload) {
