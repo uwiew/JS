@@ -11,14 +11,21 @@
     <transition name="fade" mode="out-in">
       <router-view class="viewport"></router-view>
     </transition>
+
+    <chat></chat>
   </div>
 </template>
 
 <script>
+import Chat from './components/Common/Chat'
+
 export default {
   name: 'app',
   mounted () {
     this.$store.dispatch('initMine')
+  },
+  components: {
+    Chat
   }
 }
 </script>
@@ -50,6 +57,7 @@ a
   color: #2c3e50
   overflow: hidden
   background #f7f8fa
+  position relative
   nav
     height: $nav-height
     line-height: $nav-height

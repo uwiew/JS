@@ -60,7 +60,7 @@ export default {
             })
             this.$router.replace('/mine')
           } catch (e) {
-            this.$message.error(`${e.response.data[1]}，吔屎啦你`)
+            this.$message.error(`${e.response.data[1]}，吔*啦你`)
           }
         } else {
           return false

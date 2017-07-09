@@ -81,6 +81,10 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
+
+      <el-tab-pane label="聊骚" name="chat">
+        <el-button @click="$store.dispatch('popChat', { isShow: true })">弹出窗口</el-button>
+      </el-tab-pane>
     </el-tabs>
   </section>
 </template>

@@ -48,14 +48,15 @@
           <p v-show="!moneyIsEnough">
             <i class="el-icon-close"></i>&nbsp; 您的账户余额为 <b style="color: #d85a63;">{{userInfo.money}}</b> 元，金额不足以支付</p>
         </div>
-        <el-button @click.native="dialogVisible = true" type="primary" :disabled="!moneyIsEnough" size="large">提交订单</el-button>
+        <el-button @click.native="dialogVisible = true" type="primary" :disabled="!moneyIsEnough">提交订单</el-button>
       </div>
     </div>
 
     <el-dialog
       title="确认订单"
       :visible.sync="dialogVisible"
-      :before-close="handleClose">
+      :before-close="handleClose"
+      style="min-width: 300px;">
       <span>是否购买？</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="handleClose">取 消</el-button>

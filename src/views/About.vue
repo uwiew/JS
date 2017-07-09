@@ -4,7 +4,7 @@
 
     <div class="list">
       <div class="banner">
-        <h2>关于机社</h2>
+        <h2>关于我们</h2>
         <p>踏踏实实做人，认认真真搞机</p>
       </div>
 
