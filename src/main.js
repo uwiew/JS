@@ -6,7 +6,7 @@ import store from './store'
 import 'normalize.css/normalize.css'
 import './public/js/iconfont'
 
-import { Button, Carousel, CarouselItem, Form, FormItem, Input, Loading, InputNumber, Tabs, TabPane, Message, Step, Steps, Table, TableColumn, Dialog, Select, Option, Collapse, CollapseItem, ButtonGroup } from 'element-ui'
+import { Button, Carousel, CarouselItem, Form, FormItem, Input, Loading, InputNumber, Tabs, TabPane, Message, Step, Steps, Table, TableColumn, Dialog, Select, Option, Collapse, CollapseItem, ButtonGroup, Badge } from 'element-ui'
 Vue.use(Button)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
@@ -27,6 +27,7 @@ Vue.use(Option)
 Vue.use(Collapse)
 Vue.use(CollapseItem)
 Vue.use(ButtonGroup)
+Vue.use(Badge)
 
 Vue.prototype.$message = Message
 

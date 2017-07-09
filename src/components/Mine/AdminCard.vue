@@ -90,7 +90,12 @@
       </el-tab-pane>
 
       <el-tab-pane label="聊骚" name="chat">
-        <el-button @click="$store.dispatch('popChat', { isShow: true })">弹出窗口</el-button>
+        <ul class="chat-list" @click="popChat($event)">
+          <li v-for="item in chatData" :key="item.name">
+            <h3>{{ item.name }}</h3>
+            <el-badge :value="item.message.length" :max="99"></el-badge>
+          </li>
+        </ul>
       </el-tab-pane>
     </el-tabs>
   </section>
@@ -99,6 +104,7 @@
 <script>
 import http from 'axios'
 // import io from 'socket.io-client'
+// import chatData from '../../store/mock_chat.js'
 
 export default {
   data () {
@@ -125,7 +131,8 @@ export default {
         { value: '孕达', label: '孕达' },
         { value: '上通', label: '上通' },
         { value: '下通', label: '下通' }
-      ]
+      ],
+      chatData: require('../../store/mock_chat')
     }
   },
   computed: {
@@ -205,6 +212,9 @@ export default {
       this.dialogFormVisible = true
       this.expressForm.id = scope.row._id
       this.expressFormIndex = scope.$index
+    },
+    popChat (e) {
+      console.log(e.target)
     }
   },
   async mounted () {
@@ -246,7 +256,18 @@ $mobile-width = 767px
       a
         color #d85a63
 
-
+.chat-list
+  margin 0
+  border 1px solid #dfe6ec
+  li
+    border-bottom 1px dashed #dfe6ec
+    cursor pointer
+    display flex
+    align-items center
+    justify-content space-between
+    padding 20px
+    &:last-child
+      border-bottom none
   @media (max-width $mobile-width)
     width 100% !important
 </style>
