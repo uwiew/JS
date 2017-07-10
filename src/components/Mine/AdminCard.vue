@@ -123,7 +123,6 @@ export default {
         { value: '上通', label: '上通' },
         { value: '下通', label: '下通' }
       ],
-      chatData: require('../../store/mock_chat'),
       socket: null
     }
   },
