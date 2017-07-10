@@ -7,6 +7,10 @@
         <el-step id="step3" title="已完成"></el-step>
       </el-steps>
       <div class="status">
+        <h3 v-show="order.status === -1">
+          <img src="../public/images/u948.jpg" alt="">&nbsp;&nbsp;&nbsp;
+          <span>订单状态：您的订单已取消</span>
+        </h3>
         <h3 v-show="order.status === 0">
           <img src="../public/images/u948.jpg" alt="">&nbsp;&nbsp;&nbsp;
           <span>订单状态：您的订单已提交，请等待商家发货</span>

@@ -8,6 +8,9 @@
       <el-form-item prop="address" label="收货地址" label-width="68px">
         <el-input v-model.trim="form.address" :placeholder="mineInfo.address"></el-input>
       </el-form-item>
+      <el-form-item prop="address" label="新的密码" label-width="68px">
+        <el-input v-model.trim="form.password" type="password"></el-input>
+      </el-form-item>
       <el-form-item label="头像上传" label-width="68px">
         <el-progress v-show="imgLoading" :percentage="progress" :status="progress === 100 ? 'success' : ''"></el-progress>
         <el-upload class="avatar-uploader" action="http://upload-z2.qiniu.com" :on-progress="loading" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload" :data="token">
@@ -29,7 +32,8 @@ export default {
       form: {
         telephoneNum: this.mineInfo.telephoneNum,
         address: this.mineInfo.address,
-        headImgUrl: ''
+        headImgUrl: '',
+        password: ''
       },
       imgLoading: false,
       progress: 0,
@@ -45,7 +49,13 @@ export default {
       }
     },
     async submitEditUserInfo () {
-      await http.post('/userPrivate/modify', this.form)
+      let data = {}
+      for (let i in this.form) {
+        if (this.form[i]) {
+          data[i] = this.form[i]
+        }
+      }
+      await http.post('/userPrivate/modify', data)
       this.$store.dispatch('initMine')
       this.$message('成功修改')
       this.$emit('close')

@@ -24,6 +24,7 @@
               <template scope="scope">
                 <el-button @click.native="beforeShip(scope)" v-if="scope.row.status === 0" style="color: #d85a63; font-size: 12px;"> 发货 </el-button>
                 <p v-if="scope.row.status === 2" style="color: #4688f1; font-size: 12px;"> 已确认收货 </p>
+                <p v-if="scope.row.status === -1" style="color: #d85a63; font-size: 12px;"> 已取消 </p>
                 <p v-if="scope.row.status === 1" style="color: #41b783; font-size: 12px;"> 已发货 </p>
               </template>
             </el-table-column>
@@ -193,6 +194,11 @@ export default {
       phone.disable = true
       this.goodsList[index].disable = true
     },
+    async updateOrder (id, index) {
+      let order = (await http.get(`/order/status?id=${id}`)).data
+      this.dataOrderList.splice(index, 1, order)
+      return order
+    },
     async ship () {
       this.expressForm.status = 1
       await http.post('/admin/modifyOrder', this.expressForm)
@@ -207,7 +213,12 @@ export default {
       this.dialogFormVisible = false
       this.$message('已发货')
     },
-    beforeShip (scope) {
+    async beforeShip (scope) {
+      let order = (await this.updateOrder(scope.row._id, scope.$index))
+      if (order.status === -1) {
+        this.$message('订单已被取消')
+        return
+      }
       this.expressForm.expressId = Date.now()
       this.dialogFormVisible = true
       this.expressForm.id = scope.row._id
