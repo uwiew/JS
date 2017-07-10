@@ -1,22 +1,22 @@
 <template>
-  <section class="chat" v-if="isShow" @click.self="$store.dispatch('popChat', { isShow: false })">
+  <section class="chat" v-if="isShow" @click.self="closeChat">
     <div class="chat-card">
       <header>
-        <h3>HIS NAME</h3>
+        <h3>聊天窗口</h3>
         <!--icon-->
-        <span>CLOSE</span>
+        <span @click.self="closeChat">CLOSE</span>
       </header>
       <main>
         <!-- 聊天界面 -->
         <ul>
-          <li v-for="(item,index) in chatList" :key="index">
-            <h5>{{item.name}} :</h5>
-            <p> {{item.message}}</p>
+          <li v-for="(item,index) in chatList" :key="index" :class="{ isMine: myName === item.name }">
+            <h5>{{item.name}}</h5>
+            <p>{{item.message}}</p>
           </li>
         </ul>
       </main>
       <footer>
-        <el-input v-model="message"></el-input>
+        <el-input v-model="message" @keyup.13.native="send"></el-input>
         <el-button @click.native="send">SEND</el-button>
       </footer>
     </div>
@@ -39,7 +39,8 @@ export default {
       isShow: state => state.chat.isShow,
       chatList: state => state.chat.chatList,
       isLogin: state => !!state.mine.mine,
-      isAdmin: state => state.mine.mine ? state.mine.mine.isAdmin : false
+      isAdmin: state => state.mine.mine ? state.mine.mine.isAdmin : false,
+      myName: state => state.mine.mine.name
     })
   },
   mounted () { },
@@ -80,6 +81,9 @@ export default {
         return
       }
       callback()
+    },
+    closeChat () {
+      this.$store.dispatch('popChat', { isShow: false })
     }
   }
 }
@@ -99,10 +103,14 @@ $mobile-width 767px
   right 0
   z-index 999
   .chat-card
+    display flex
+    flex-direction column
+    justify-content space-between
+    align-items center
     min-width 300px
     max-width 600px
     width 80%
-    height 80vh
+    height 70vh
     border-radius 4px
     background #fff
     box-shadow 1px 2px 5px rgba(0,0,0,0.1)
@@ -111,7 +119,7 @@ $mobile-width 767px
     position absolute
     left 50%
     top 50%
-    margin 30px auto
+    margin 0px auto
     transform translate(-50%, -50%)
     z-index 999
     @media (max-width $mobile-width)
@@ -123,8 +131,37 @@ $mobile-width 767px
       background #4688f1
       padding 10px 20px
       color #fff
+      width 100%
+      box-sizing border-box
+      position fixed
+      top 0
+      left 0
+      span
+        cursor pointer
     main
-      padding 20px
+      padding 86px 20px 76px
+      overflow-y auto
+      width 100%
+      box-sizing border-box
+      h5
+        margin 0
+        font-size 20px
+      .isMine
+        text-align right
+        h5
+          color #4688f1
+      // p
+      //   text-indent 2rem
     footer
+      display flex
+      justify-content space-between
+      align-items center
+      position fixed
+      width 100%
       padding 20px
+      box-sizing border-box
+      bottom 0
+      background #f7f8fa
+      div:first-child
+        margin-right 20px
 </style>

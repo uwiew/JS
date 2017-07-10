@@ -11,7 +11,7 @@
     </el-form>
     <div class="other-link">
       <router-link to="/signup" class="button">注 册</router-link>
-      <router-link to="/forget" class="button">忘 记</router-link>
+      <!--<router-link to="/forget" class="button">忘 记</router-link>-->
     </div>
   </section>
 </template>

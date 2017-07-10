@@ -1,18 +1,18 @@
 <template>
   <section class="index">
     <el-carousel class="carousel">
-      <el-carousel-item v-for="(item, idx) in bannerPic" :key="idx" :style="{background: `#333 url(${ item }) center center no-repeat`, backgroundSize: 'cover'}"> </el-carousel-item>
+      <el-carousel-item v-for="(item, idx) in bannerPic" :key="idx" :style="{background: `#333 url(${ item }) center center no-repeat`, backgroundSize: 'cover'}"></el-carousel-item>
     </el-carousel>
     <div class="number-info info">
       <div class="number-list list">
         <div class="number-item" v-for="(item, idx) in number" :key="idx">
-          <h3>{{ item.fromData | beautifyNumber }}</h3>
+          <h3>{{ item.fromData | beautifyNumber }}{{ item.title === '用户总数' ? 'k+' : '' }}</h3>
           <p>{{ item.title }}</p>
         </div>
       </div>
     </div>
+
     <div class="sales-info info">
-      <!--<h2>大数统计</h2>-->
       <div class="sales-list list">
         <div class="sales-item">
           <h3>剁手排行</h3>
@@ -24,11 +24,31 @@
         </div>
       </div>
     </div>
+
     <div class="type-info info">
       <h2>
         <span class="ityped"></span>
       </h2>
     </div>
+
+    <div class="user-info info">
+      <h3>买家评价</h3>
+      <ul>
+        <li>
+          <h4>不愿意透露姓名的黄昭为先生：</h4>
+          <p>自从用了这个网站，我再也不去澳门皇家赌场赌博了。</p>
+        </li>
+        <li>
+          <h4>可爱的唐柳柳：</h4>
+          <p>在这个网站上，我终于买到了寻找多年的，可以更换电池的限量iPhone了！</p>
+        </li>
+        <li>
+          <h4>厂妹小达达：</h4>
+          <p>为什么没有OPPO卖？又不是不能开机！</p>
+        </li>
+      </ul>
+    </div>
+
     <js-footer></js-footer>
   </section>
 </template>
@@ -179,6 +199,21 @@ $mobile-width = 767px
         margin-bottom: 50px
         &:last-child
           margin-bottom: 0
+
+  .user-info
+    width 70%
+    margin 0 auto 50px
+    background-color #fff
+    padding 20px
+    box-shadow 1px 2px 5px rgba(0,0,0,0.1)
+    border-radius 4px
+    box-sizing border-box
+    ul
+      border-top 1px solid #eee
+    h4
+      color #4688f1
+    @media (max-width: $mobile-width)
+      width 96%
 
   .ityped-cursor
     color #4688f1
