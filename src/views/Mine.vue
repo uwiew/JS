@@ -136,6 +136,8 @@ $mobile-width = 767px
       box-sizing border-box
       z-index 100
       position relative
+      min-height 140px
+      background #fff
       img
         width 100%
     .user-list
@@ -156,6 +158,7 @@ $mobile-width = 767px
       .head-img
         margin -60px 10px 5px
         width 120px
+        min-height 120px
       .user-list
         padding-left 140px
         font-size 12px

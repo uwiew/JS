@@ -12,7 +12,7 @@
             <el-table-column prop="price" label="价格"> </el-table-column>
             <el-table-column prop="num" label="数量" width="100"> </el-table-column>
             <el-table-column prop="cost" label="总计" width="100"> </el-table-column>
-            <el-table-column prop="address" label="地址" width="100"></el-table-column>
+            <el-table-column prop="address" label="地址" width="180"></el-table-column>
             <el-table-column prop="express" label="快递" width="100"> </el-table-column>
             <el-table-column prop="expressId" label="快递号" width="225"> </el-table-column>
             <el-table-column prop="_id" label="订单号" width="225">

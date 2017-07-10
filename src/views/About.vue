@@ -42,6 +42,17 @@
         <h2>关于技术</h2>
         <p>全栈 JavaScript</p>
       </div>
+
+      <div class="tech-info info">
+        <div class="tech-list">
+          <ul v-for="(item, i) in technique" :key="i">
+            <h3 v-if="i === 0">前端</h3>
+            <h3 v-if="i === 1">后端</h3>
+            <h3 v-if="i === 2">工具</h3>
+            <li v-for="(name, j) in item" :key="j">{{ name }}</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -50,6 +61,15 @@
 import TeamCard from '../components/About/TeamCard'
 
 export default {
+  data () {
+    return {
+      technique: [
+        ['Vue', 'Vue-Router', 'Vuex', 'Webpack', 'Chart.js', 'Axios', 'Babel', 'Eslint', 'Stylus', 'Element-ui'],
+        ['Node.js', 'Socket.io', 'Redis', 'Koa', 'Mongodb', 'Mongoose'],
+        ['VSCode', 'Git', 'Axure RP 8', 'Insomnia', 'Robo 3T', 'ZSH', 'Dash', 'Chrome', 'Firefox', 'Safari', 'Vivia', 'Wireshark', 'AI', 'Shadowsocket']
+      ]
+    }
+  },
   computed: {
     teamList () {
       return this.$store.state.teamList.teamList
@@ -126,6 +146,16 @@ $mobile-width = 767px
       margin-bottom 60px
       font-weight 300
       font-size 48px
+
+  .tech-list
+    display flex
+    justify-content space-around
+    h3
+      border-bottom 1px dashed #eee
+      margin-bottom 20px
+      padding-bottom 5px
+      &:last-child
+        border-bottom none
 
   @media (max-width $mobile-width)
     .info
