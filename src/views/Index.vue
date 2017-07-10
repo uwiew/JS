@@ -1,18 +1,17 @@
 <template>
   <section class="index">
     <el-carousel class="carousel">
-      <el-carousel-item v-for="(item, idx) in bannerPic" :key="idx" :style="{background: `#333 url(${ item }) center center no-repeat`, backgroundSize: 'cover'}"> </el-carousel-item>
+      <el-carousel-item v-for="(item, idx) in bannerPic" :key="idx" :style="{background: `#333 url(${ item }) center center no-repeat`, backgroundSize: 'cover'}"></el-carousel-item>
     </el-carousel>
     <div class="number-info info">
       <div class="number-list list">
         <div class="number-item" v-for="(item, idx) in number" :key="idx">
-          <h3>{{ item.fromData | beautifyNumber }}</h3>
+          <h3>{{ item.fromData | beautifyNumber }}{{ item.title === '用户总数' ? 'k+' : '' }}</h3>
           <p>{{ item.title }}</p>
         </div>
       </div>
     </div>
     <div class="sales-info info">
-      <!--<h2>大数统计</h2>-->
       <div class="sales-list list">
         <div class="sales-item">
           <h3>剁手排行</h3>

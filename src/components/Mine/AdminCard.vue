@@ -81,11 +81,11 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="聊骚" name="chat">
+      <el-tab-pane label="私信" name="chat">
         <ul class="chat-list" @click="popChat($event)">
           <li v-for="(value,key) in chatList" :key="key" :f-listKey="key">
             <h3>{{ value[0].name }}</h3>
-            <el-badge :value="value.length" :max="99"></el-badge>
+            <p>{{ value[value.length - 1].message }}</p>
           </li>
         </ul>
       </el-tab-pane>
@@ -274,6 +274,8 @@ $mobile-width = 767px
     align-items center
     justify-content space-between
     padding 20px
+    p
+      color #abb0bc
     &:last-child
       border-bottom none
   @media (max-width $mobile-width)
