@@ -9,9 +9,9 @@
       <main>
         <!-- 聊天界面 -->
         <ul>
-          <li v-for="(item,index) in chatList" :key="index">
-            <h5>{{item.name}} :</h5>
-            <p> {{item.message}}</p>
+          <li v-for="(item,index) in chatList" :key="index" :class="{ isMine: myName === item.name }">
+            <h5>{{item.name}}</h5>
+            <p>{{item.message}}</p>
           </li>
         </ul>
       </main>
@@ -39,7 +39,8 @@ export default {
       isShow: state => state.chat.isShow,
       chatList: state => state.chat.chatList,
       isLogin: state => !!state.mine.mine,
-      isAdmin: state => state.mine.mine ? state.mine.mine.isAdmin : false
+      isAdmin: state => state.mine.mine ? state.mine.mine.isAdmin : false,
+      myName: state => state.mine.mine.name
     })
   },
   mounted () { },
@@ -145,8 +146,12 @@ $mobile-width 767px
       h5
         margin 0
         font-size 20px
-      p
-        text-indent 2rem
+      .isMine
+        text-align right
+        h5
+          color #4688f1
+      // p
+      //   text-indent 2rem
     footer
       display flex
       justify-content space-between

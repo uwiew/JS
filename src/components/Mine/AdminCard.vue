@@ -226,7 +226,7 @@ export default {
       this.socket.emit('admin')
     })
     this.socket.on('orderCreate', (data) => {
-      this.$message('您有新的订单请及时处理塞')
+      this.$message('您有新的订单请及时处理哟~')
       this.dataOrderList.unshift(data)
     })
     this.socket.on('chat', (data) => {

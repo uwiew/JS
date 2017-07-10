@@ -6,7 +6,7 @@
       <li>很好</li>
       <li>非常好</li>
     </ul>
-    <p>&copy 2017-2018</p>
+    <p>&copy 2017</p>
   </footer>
 </template>
 
@@ -17,9 +17,9 @@ export default {
 
 <style lang="stylus">
 .footer
-  height 30vh
+  height 300px
   width 100%
-  background #4688f1
+  background #333
   color #fff
   display flex
   justify-content space-around

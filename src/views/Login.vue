@@ -57,7 +57,7 @@ $default-color = #4688f1
       border: 1px solid $default-color
     a.button
       display: inline-block
-      width: 48%
+      width: 100%
       padding: 10px
       margin-right: 4%
       box-sizing: border-box
