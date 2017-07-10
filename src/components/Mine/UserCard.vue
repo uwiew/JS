@@ -20,8 +20,11 @@
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="100">
               <template scope="scope">
+                <el-button @click="cancel(scope.$index)" type="text" size="small" v-if="scope.row.status === 0"> 取消订单 </el-button>
                 <el-button @click="confirm(scope.$index)" type="text" size="small" v-if="scope.row.status === 1"> 确认收货 </el-button>
                 <p v-if="scope.row.status === 0" style="color: #d85a63; font-size: 12px;"> 未发货 </p>
+                <p v-if="scope.row.status === -1" style="color: #d85a63; font-size: 12px;"> 已取消 </p>
+                <p v-if="scope.row.status === 1" style="color: #41b783; font-size: 12px;"> 已发货 </p>
                 <p v-if="scope.row.status === 2" style="color: #41b783; font-size: 12px;"> 已确认 </p>
               </template>
             </el-table-column>
@@ -65,8 +68,16 @@ export default {
   },
   async mounted () {
     this.dataOrderList = (await http.get('/userPrivate/orderList')).data
+    this.$store.dispatch('updateUserInfo')
   },
   methods: {
+    async cancel (index) {
+      let list = this.dataOrderList[index]
+      await http.get(`/userPrivate/cancel?orderId=${list._id}`)
+      list.status = -1
+      this.$message('已取消订单')
+      this.$store.dispatch('updateUserInfo')
+    },
     async confirm (index) {
       let list = this.dataOrderList[index]
       await http.get(`/userPrivate/confirm?orderId=${list._id}`)
