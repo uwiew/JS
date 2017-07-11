@@ -34,9 +34,9 @@
         <div class="order-item order-item-5">
           <div class="order-head">收货地址</div>
           <div class="order-body">
-            <p contenteditable="true">
-              <i class="el-icon-edit"></i>
-              {{address}}</p>
+            <p>
+              {{address}}
+            </p>
           </div>
         </div>
       </div>
